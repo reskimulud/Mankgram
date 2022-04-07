@@ -18,5 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mankgram_500"
-        app:tint="@color/white" />
+        app:tint="@color/colorPrimary" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
