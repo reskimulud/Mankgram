@@ -1,16 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorBase">#121212</color>
+    <color name="colorPrimary">#9E9E9E</color>
+    <color name="colorAccent">#FF8C05</color>
+    <color name="colorText">#D8D8D8</color>
+
     <!-- Base application theme. -->
     <style name="Theme.Mankgram" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorAccent</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/colorBase</item>
+        <item name="backgroundColor">@color/colorBase</item>
     </style>
 </resources>

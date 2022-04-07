@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mankgram</string>
+    <string name="cd_logo">Logo dari aplikasi Mankgram</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Rumah</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_notifications">Pemberitahuan</string>
+    <string name="title_new_story">Cerita Baru</string>
+    <string name="length_character">Panjang %1$s harus lebih dari 6 karakter</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="dont_have_account">Belum memiliki akun?</string>
+    <string name="have_account">Sudah memiliki akun?</string>
+</resources>
