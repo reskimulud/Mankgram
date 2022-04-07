@@ -1,29 +1,23 @@
-package com.mankart.mankgram
+package com.mankart.mankgram.authentication
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
-import com.mankart.mankgram.authentication.AuthenticationActivity
+import androidx.fragment.app.commit
+import com.mankart.mankgram.R
 
-@SuppressLint("CustomSplashScreen")
-class SplashScreenActivity : AppCompatActivity() {
+class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        setContentView(R.layout.activity_authentication)
 
-        val delayMillis: Long = 2000
+        supportFragmentManager.commit {
+            replace(R.id.placeholder, LoginFragment(), LoginFragment::class.java.simpleName)
+        }
+
         setupView()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@SplashScreenActivity, AuthenticationActivity::class.java))
-            finish()
-        }, delayMillis)
     }
 
     private fun setupView() {
@@ -37,6 +31,5 @@ class SplashScreenActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
-
     }
 }

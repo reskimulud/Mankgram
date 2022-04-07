@@ -6,4 +6,13 @@
     <string name="title_setting">Setting</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_new_story">New Story</string>
+    <string name="length_character">Length %1$s must be more than 6 characters</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="have_account">Already have an account?</string>
+
 </resources>
