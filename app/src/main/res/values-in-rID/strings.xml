@@ -13,4 +13,6 @@
     <string name="password">Kata Sandi</string>
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
+    <string name="dont_have_account">Belum memiliki akun?</string>
+    <string name="have_account">Sudah memiliki akun?</string>
 </resources>

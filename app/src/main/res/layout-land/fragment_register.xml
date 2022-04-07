@@ -8,23 +8,34 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="168dp"
-        android:layout_marginEnd="95dp"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/cd_logo"
         android:src="@drawable/mankgram_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorText" />
 
     <EditText
+        android:id="@+id/register_name"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/register_email"
+        app:layout_constraintEnd_toEndOf="@+id/register_email"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/register_email" />
+
+    <EditText
         android:id="@+id/register_email"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:autofillHints=""
@@ -37,12 +48,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <com.mankart.mankgram.customview.MyEditText
         android:id="@+id/register_password"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
@@ -60,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="@color/colorBase"
         app:layout_constraintEnd_toEndOf="@+id/register_password"
         app:layout_constraintStart_toStartOf="@+id/register_password"
@@ -81,14 +92,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="@string/dont_have_account"
+            android:text="@string/have_account"
             android:textColor="@color/colorText" />
 
         <TextView
-            android:id="@+id/tv_register"
+            android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register"
+            android:text="@string/login"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
