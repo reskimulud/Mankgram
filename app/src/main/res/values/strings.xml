@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Mankgram</string>
     <string name="cd_logo">Logo of the Mankgram app</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_new_story">New Story</string>
 </resources>
