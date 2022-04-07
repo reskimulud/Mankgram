@@ -26,19 +26,15 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.navigationBarColor = resources.getColor(R.color.black, null)
-        }
-
+        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
-
-        @Suppress("DEPRECATION")
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         supportActionBar?.hide()
 
     }
