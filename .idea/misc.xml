@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.1045" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout-night/activity_splash_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_main2.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_new_story.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Mankgram</string>
     <string name="cd_logo">Logo dari aplikasi Mankgram</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Rumah</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_notifications">Pemberitahuan</string>
+    <string name="title_new_story">Cerita Baru</string>
 </resources>
