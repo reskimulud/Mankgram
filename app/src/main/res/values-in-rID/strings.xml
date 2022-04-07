@@ -8,4 +8,9 @@
     <string name="title_notifications">Pemberitahuan</string>
     <string name="title_new_story">Cerita Baru</string>
     <string name="length_character">Panjang %1$s harus lebih dari 6 karakter</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
 </resources>

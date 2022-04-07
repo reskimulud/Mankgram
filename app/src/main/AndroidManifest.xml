@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankgram">
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:name=".authentication.AuthenticationActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
