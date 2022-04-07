@@ -7,4 +7,5 @@
     <string name="title_setting">Pengaturan</string>
     <string name="title_notifications">Pemberitahuan</string>
     <string name="title_new_story">Cerita Baru</string>
+    <string name="length_character">Panjang %1$s harus lebih dari 6 karakter</string>
 </resources>
