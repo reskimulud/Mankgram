@@ -4,6 +4,7 @@
     <color name="colorPrimary">#191645</color>
     <color name="colorAccent">#43C6AC</color>
     <color name="colorText">#121212</color>
+    <color name="colorTextSecondary">#292929</color>
 
     <color name="colorPrimaryVariant">#262168</color>
 

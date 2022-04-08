@@ -3,6 +3,7 @@
     <color name="colorPrimary">#9E9E9E</color>
     <color name="colorAccent">#43C6AC</color>
     <color name="colorText">#EEEEEE</color>
+    <color name="colorTextSecondary">#AFAFAF</color>
 
     <color name="colorPrimaryVariant">#8A8A8A</color>
 
