@@ -16,4 +16,5 @@
     <string name="dont_have_account">Belum memiliki akun?</string>
     <string name="have_account">Sudah memiliki akun?</string>
     <string name="tag_line">Tempat untuk mengabadikan ceritamu</string>
+    <string name="cd_story_image">Gambar cerita yang dibagikan oleh %1$s</string>
 </resources>

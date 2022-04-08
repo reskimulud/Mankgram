@@ -15,5 +15,6 @@
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="have_account">Already have an account?</string>
     <string name="tag_line">A great place to capture your story</string>
+    <string name="cd_story_image">Story photo shared by %1$s</string>
 
 </resources>
