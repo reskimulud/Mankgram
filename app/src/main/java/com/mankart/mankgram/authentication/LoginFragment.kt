@@ -1,5 +1,6 @@
 package com.mankart.mankgram.authentication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
+import com.mankart.mankgram.MainActivity
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentLoginBinding
 
@@ -34,6 +36,9 @@ class LoginFragment : Fragment() {
                 replace(R.id.placeholder, RegisterFragment())
                 addToBackStack(null)
             }
+        }
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(activity, MainActivity::class.java))
         }
     }
 }

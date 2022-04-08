@@ -14,5 +14,6 @@
     <string name="register">Register</string>
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="have_account">Already have an account?</string>
+    <string name="tag_line">A great place to capture your story</string>
 
 </resources>

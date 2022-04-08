@@ -1,20 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Colors -->
-    <color name="colorBase">#D8D8D8</color>
-    <color name="colorPrimary">#4973DF</color>
-    <color name="colorAccent">#FF8C05</color>
+    <color name="colorBase">#EEEEEE</color>
+    <color name="colorPrimary">#191645</color>
+    <color name="colorAccent">#43C6AC</color>
     <color name="colorText">#121212</color>
 
+    <color name="colorPrimaryVariant">#262168</color>
+
     <!-- Base application theme. -->
-    <style name="Theme.Mankgram" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.Mankgram" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorOnPrimary">@color/colorAccent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">@color/colorBase</item>
         <item name="backgroundColor">@color/colorBase</item>
+    </style>
+
+    <!-- App Bar style -->
+    <style name="expandedBarTextStyle" parent="Theme.Mankgram">
+        <item name="android:textSize">0sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
     </style>
 </resources>

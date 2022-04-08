@@ -19,7 +19,7 @@
         app:tint="@color/colorText" />
 
     <EditText
-        android:id="@+id/register_email"
+        android:id="@+id/login_email"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.415" />
 
     <com.mankart.mankgram.customview.MyEditText
-        android:id="@+id/register_password"
+        android:id="@+id/login_password"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -46,22 +46,22 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@color/colorText"
-        app:layout_constraintEnd_toEndOf="@+id/register_email"
-        app:layout_constraintStart_toStartOf="@+id/register_email"
-        app:layout_constraintTop_toBottomOf="@+id/register_email"
+        app:layout_constraintEnd_toEndOf="@+id/login_email"
+        app:layout_constraintStart_toStartOf="@+id/login_email"
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
         android:text="@string/login"
         android:textColor="@color/colorBase"
-        app:layout_constraintEnd_toEndOf="@+id/register_password"
-        app:layout_constraintStart_toStartOf="@+id/register_password"
-        app:layout_constraintTop_toBottomOf="@+id/register_password"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
         tools:ignore="TextContrastCheck" />
 
     <LinearLayout
@@ -71,7 +71,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register">
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
         <TextView
             android:id="@+id/tv_already_have_account"
