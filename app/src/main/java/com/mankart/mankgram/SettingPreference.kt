@@ -70,6 +70,12 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
         }
     }
 
+    suspend fun clearCache() {
+        dataStore.edit {
+            it.clear()
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: SettingPreference? = null
