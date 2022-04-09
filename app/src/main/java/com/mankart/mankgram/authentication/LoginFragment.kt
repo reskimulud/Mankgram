@@ -73,6 +73,10 @@ class LoginFragment : Fragment() {
                         } else {
                             val msg = getString(R.string.wrong_credential)
                             Toast.makeText(context, "$message: $msg", Toast.LENGTH_SHORT).show()
+                            binding.loginPassword.apply {
+                                text?.clear()
+                                setError(null)
+                            }
                         }
                     }
                 }

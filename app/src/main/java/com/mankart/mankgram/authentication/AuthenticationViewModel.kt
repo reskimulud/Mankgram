@@ -88,4 +88,10 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
         }
     }
 
+    fun logout() {
+        viewModelScope.launch {
+            userRepository.clearCache()
+        }
+    }
+
 }
