@@ -22,4 +22,8 @@
     <string name="set_language">Set language</string>
     <string name="dark_mode">Dark mode</string>
     <string name="logout">Logout</string>
+    <string name="fill_field">Please fill all field</string>
+    <string name="wrong_credential">Wrong username or password</string>
+    <string name="register_success">Register success</string>
+    <string name="register_failed">Register failed</string>
 </resources>

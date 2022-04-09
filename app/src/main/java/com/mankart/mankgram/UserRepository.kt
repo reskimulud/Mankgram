@@ -2,9 +2,13 @@ package com.mankart.mankgram
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import com.mankart.mankgram.network.ApiService
+import retrofit2.Call
 
 class UserRepository(
-    private val pref: SettingPreference
+    private val pref: SettingPreference,
+    private val apiService: ApiService,
+    val appExecutors: AppExecutors
 ) {
     /**
      * Access data from DataStore (SettingPreference)
@@ -22,6 +26,31 @@ class UserRepository(
     fun getUserEmail() : LiveData<String> = pref.getUserEmail().asLiveData()
     suspend fun saveUserEmail(value: String) = pref.saveUserEmail(value)
 
+    suspend fun clearCache() = pref.clearCache()
+
+    /**
+     * Access data from API (Retrofit)
+     */
+
+    fun userLogin(email: String, password: String) : Call<UserResponse>  {
+        val user: Map<String, String> = mapOf(
+            "email" to email,
+            "password" to password
+        )
+
+        return apiService.userLogin(user)
+    }
+
+    fun userRegister(name: String, email: String, password: String) : Call<UserResponse>  {
+        val user: Map<String, String> = mapOf(
+            "name" to name,
+            "email" to email,
+            "password" to password
+        )
+
+        return apiService.userRegister(user)
+    }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null
@@ -29,9 +58,11 @@ class UserRepository(
         @JvmStatic
         fun getInstance(
             pref: SettingPreference,
+            apiService: ApiService,
+            appExecutors: AppExecutors
         ) : UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(pref)
+                instance ?: UserRepository(pref, apiService, appExecutors)
             }.also { instance = it }
     }
 
