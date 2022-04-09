@@ -7,17 +7,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.mankart.mankgram.MainActivity
 import com.mankart.mankgram.R
+import com.mankart.mankgram.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentLoginBinding
-
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
+    private lateinit var factory: ViewModelFactory
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels { factory }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var message: String
+
+    private lateinit var name: String
+    private lateinit var token: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +40,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        factory = ViewModelFactory.getInstance(requireActivity())
+        initObserve()
+
         binding.tvRegister.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 replace(R.id.placeholder, RegisterFragment())
@@ -38,7 +51,65 @@ class LoginFragment : Fragment() {
             }
         }
         binding.btnLogin.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
+            val email = binding.loginEmail.text.toString()
+            val password = binding.loginPassword.text.toString()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                val msg = getString(R.string.fill_field)
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            } else {
+                authenticationViewModel.userLogin(email, password)
+                authenticationViewModel.error.observe(viewLifecycleOwner) { event ->
+                    event.getContentIfNotHandled()?.let { error ->
+                        if (!error) {
+                            authenticationViewModel.apply {
+                                saveUserEmail(email)
+                                saveUserToken(token)
+                                saveUserName(name)
+                            }
+                            startActivity(Intent(activity, MainActivity::class.java))
+                            activity?.finish()
+                        } else {
+                            val msg = getString(R.string.wrong_credential)
+                            Toast.makeText(context, "$message: $msg", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
     }
+
+    private fun initObserve() {
+        authenticationViewModel.message.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                message = it
+            }
+        }
+
+        authenticationViewModel.user.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                name = it.name.toString()
+                token = it.token.toString()
+            }
+        }
+
+        authenticationViewModel.loading.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                loading(it)
+            }
+        }
+
+    }
+
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.btnLogin.isEnabled = false
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.btnLogin.isEnabled = true
+        }
+    }
+
 }
+
