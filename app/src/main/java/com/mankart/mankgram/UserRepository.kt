@@ -51,6 +51,8 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
+    fun getUserStories() = apiService.getUserStories()
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

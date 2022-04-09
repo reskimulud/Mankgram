@@ -42,6 +42,8 @@ class HomeFragment : Fragment() {
             binding.tvWelcomeName.text = it
         }
 
+        homeViewModel.getUserStories()
+
         initRecycler()
     }
 
@@ -71,7 +73,10 @@ class HomeFragment : Fragment() {
 
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
-        listStoryAdapter.setData(data)
+//        listStoryAdapter.setData(data)
+        homeViewModel.userStories.observe(viewLifecycleOwner) {
+            listStoryAdapter.setData(it)
+        }
         binding.rvStory.adapter = listStoryAdapter
     }
 
