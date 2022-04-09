@@ -62,17 +62,21 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
 
     fun getUserToken() = userRepository.getUserToken()
 
-    fun saveUserToken(token: String) {
+    fun saveUserToken(token: String?) {
         viewModelScope.launch {
-            userRepository.saveUserToken(token)
+            if (token != null) {
+                userRepository.saveUserToken(token)
+            }
         }
     }
 
     fun getUserName() = userRepository.getUserName()
 
-    fun saveUserName(name: String) {
+    fun saveUserName(name: String?) {
         viewModelScope.launch {
-            userRepository.saveUserName(name)
+            if (name != null) {
+                userRepository.saveUserName(name)
+            }
         }
     }
 

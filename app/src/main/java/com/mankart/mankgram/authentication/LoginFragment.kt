@@ -2,7 +2,6 @@ package com.mankart.mankgram.authentication
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,11 +61,13 @@ class LoginFragment : Fragment() {
                 authenticationViewModel.error.observe(viewLifecycleOwner) { event ->
                     event.getContentIfNotHandled()?.let { error ->
                         if (!error) {
-                            authenticationViewModel.apply {
-                                saveUserEmail(email)
-                                saveUserToken(token)
-                                saveUserName(name)
+                            authenticationViewModel.user.observe(viewLifecycleOwner) { event ->
+                                event.getContentIfNotHandled()?.let {
+                                    authenticationViewModel.saveUserToken(it.token)
+                                    authenticationViewModel.saveUserName(it.name)
+                                }
                             }
+                            authenticationViewModel.saveUserEmail(email)
                             startActivity(Intent(activity, MainActivity::class.java))
                             activity?.finish()
                         } else {
@@ -83,13 +84,6 @@ class LoginFragment : Fragment() {
         authenticationViewModel.message.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
                 message = it
-            }
-        }
-
-        authenticationViewModel.user.observe(viewLifecycleOwner) { event ->
-            event.getContentIfNotHandled()?.let {
-                name = it.name.toString()
-                token = it.token.toString()
             }
         }
 
