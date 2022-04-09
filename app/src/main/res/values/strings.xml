@@ -14,5 +14,12 @@
     <string name="register">Register</string>
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="have_account">Already have an account?</string>
-
+    <string name="tag_line">A great place to capture your story</string>
+    <string name="cd_story_image">Story photo shared by %1$s</string>
+    <string name="detail">Detail</string>
+    <string name="close">Close</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="set_language">Set language</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="logout">Logout</string>
 </resources>
