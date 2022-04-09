@@ -32,13 +32,23 @@ class UserRepository(
      * Access data from API (Retrofit)
      */
 
-    fun userLogin(email: String, password: String) : Call<UserLoginResponse>  {
+    fun userLogin(email: String, password: String) : Call<UserResponse>  {
         val user: Map<String, String> = mapOf(
             "email" to email,
             "password" to password
         )
 
         return apiService.userLogin(user)
+    }
+
+    fun userRegister(name: String, email: String, password: String) : Call<UserResponse>  {
+        val user: Map<String, String> = mapOf(
+            "name" to name,
+            "email" to email,
+            "password" to password
+        )
+
+        return apiService.userRegister(user)
     }
 
     companion object {

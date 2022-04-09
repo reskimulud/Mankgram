@@ -24,9 +24,6 @@ class LoginFragment : Fragment() {
 
     private lateinit var message: String
 
-    private lateinit var name: String
-    private lateinit var token: String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,7 +93,6 @@ class LoginFragment : Fragment() {
                 loading(it)
             }
         }
-
     }
 
     private fun loading(isLoading: Boolean) {

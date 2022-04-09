@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mankart.mankgram.Event
-import com.mankart.mankgram.UserLoginResponse
+import com.mankart.mankgram.UserResponse
 import com.mankart.mankgram.UserModel
 import com.mankart.mankgram.UserRepository
 import kotlinx.coroutines.launch
@@ -30,10 +30,10 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
     fun userLogin(email: String, password: String) {
         _loading.value = Event(true)
         val client = userRepository.userLogin(email, password)
-        client.enqueue(object : Callback<UserLoginResponse> {
+        client.enqueue(object : Callback<UserResponse> {
            override fun onResponse(
-                call: Call<UserLoginResponse>,
-                response: Response<UserLoginResponse>
+               call: Call<UserResponse>,
+               response: Response<UserResponse>
             ) {
                 Log.e("AuthenticationViewModel", "onResponse: " + response.body())
                 _loading.value = Event(false)
@@ -51,7 +51,39 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
                 }
             }
 
-            override fun onFailure(call: Call<UserLoginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.e("AuthenticationViewModel", "onFailure: " + t.message)
+                _loading.value = Event(false)
+                _message.value = Event(t.message.toString())
+                _error.value = Event(true)
+            }
+        })
+    }
+
+    fun userRegister(
+        name: String,
+        email: String,
+        password: String
+    ) {
+        _loading.value = Event(true)
+        val client = userRepository.userRegister(name, email, password)
+        client.enqueue(object : Callback<UserResponse> {
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                Log.e("AuthenticationViewModel", "onResponse: " + response.body())
+                _loading.value = Event(false)
+                if (response.isSuccessful) {
+                    _error.value = Event(false)
+                } else {
+                    Log.e("AuthenticationViewModel", "onResponse fail: ")
+                    _message.value = Event(response.message())
+                    _error.value = Event(true)
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.e("AuthenticationViewModel", "onFailure: " + t.message)
                 _loading.value = Event(false)
                 _message.value = Event(t.message.toString())

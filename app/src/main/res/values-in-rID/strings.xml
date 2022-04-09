@@ -25,4 +25,6 @@
     <string name="logout">Keluar</string>
     <string name="fill_field">Wajib diisi semuanya</string>
     <string name="wrong_credential">Username atau password salah</string>
+    <string name="register_success">Daftar akun berhasil</string>
+    <string name="register_failed">Daftar akun gagal</string>
 </resources>
