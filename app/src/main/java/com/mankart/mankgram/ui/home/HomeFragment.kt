@@ -10,10 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mankart.mankgram.ListStoryAdapter
 import com.mankart.mankgram.StoryModel
+import com.mankart.mankgram.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private lateinit var factory: ViewModelFactory
+    private val homeViewModel: HomeViewModel by activityViewModels { factory }
     private var _binding: FragmentHomeBinding? = null
     private lateinit var listStoryAdapter: ListStoryAdapter
 
@@ -28,12 +30,19 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        initRecycler()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        factory = ViewModelFactory.getInstance(requireActivity())
+
+        homeViewModel.getName().observe(viewLifecycleOwner) {
+            binding.tvWelcomeName.text = it
+        }
+
+        initRecycler()
     }
 
     private fun initRecycler() {

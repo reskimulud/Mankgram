@@ -3,11 +3,12 @@ package com.mankart.mankgram.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mankart.mankgram.UserRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun getName(): LiveData<String> {
+        return userRepository.getUserName()
     }
-    val text: LiveData<String> = _text
+
 }
