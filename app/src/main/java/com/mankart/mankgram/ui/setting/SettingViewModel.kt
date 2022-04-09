@@ -3,11 +3,41 @@ package com.mankart.mankgram.ui.setting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mankart.mankgram.UserRepository
+import kotlinx.coroutines.launch
 
-class SettingViewModel : ViewModel() {
+class SettingViewModel(private val userRepository: UserRepository) : ViewModel() {
+    fun getThemeMode(): LiveData<Boolean> = userRepository.getThemeMode()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    fun saveThemeMode(isDarkMode: Boolean) {
+        viewModelScope.launch {
+            userRepository.saveThemeMode(isDarkMode)
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun getUserToken(): LiveData<String> = userRepository.getUserToken()
+
+    fun saveUserToken(token: String) {
+        viewModelScope.launch {
+            userRepository.saveUserToken(token)
+        }
+    }
+
+    fun getUserName(): LiveData<String> = userRepository.getUserName()
+
+    fun saveUserName(name: String) {
+        viewModelScope.launch {
+            userRepository.saveUserName(name)
+        }
+    }
+
+    fun getUserEmail(): LiveData<String> = userRepository.getUserEmail()
+
+    fun saveUserEmail(email: String) {
+        viewModelScope.launch {
+            userRepository.saveUserEmail(email)
+        }
+    }
+
 }
