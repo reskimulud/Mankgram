@@ -48,32 +48,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        val data: ArrayList<StoryModel> = arrayListOf(
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-        )
-
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
-//        listStoryAdapter.setData(data)
         homeViewModel.userStories.observe(viewLifecycleOwner) {
             listStoryAdapter.setData(it)
         }

@@ -16,10 +16,6 @@ class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
     private var _userStories = MutableLiveData<ArrayList<StoryModel>>()
     val userStories: LiveData<ArrayList<StoryModel>> = _userStories
 
-    fun getToken() : LiveData<String> {
-        return userRepository.getUserToken()
-    }
-
     fun getName(): LiveData<String> {
         return userRepository.getUserName()
     }
