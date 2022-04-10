@@ -14,5 +14,31 @@
     <string name="register">Register</string>
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="have_account">Already have an account?</string>
-
+    <string name="tag_line">A great place to capture your story</string>
+    <string name="cd_story_image">Story photo shared by %1$s</string>
+    <string name="detail">Detail</string>
+    <string name="close">Close</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="set_language">Set language</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="logout">Logout</string>
+    <string name="fill_field">Please fill all field</string>
+    <string name="wrong_credential">Wrong username or password</string>
+    <string name="register_success">Register success</string>
+    <string name="register_failed">Register failed</string>
+    <string name="welcome">Welcome</string>
+    <string name="title_description">Description</string>
+    <string name="upload_story">Upload Story</string>
+    <string name="enter_description">Please enter description</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="upload_success">Upload success</string>
+    <string name="uploading">Uploading…</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="error_pick_image">Error pick image</string>
+    <string name="error_showing_camera">Error showing camera</string>
+    <string name="permission_not_granted">Permission not granted</string>
+    <string name="cd_switch_camera">Button to switch to front or rear camera</string>
+    <string name="cd_capture">Button to capture image</string>
+    <string name="cd_preview">Preview image captured by camera or from gallery</string>
 </resources>

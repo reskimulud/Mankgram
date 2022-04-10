@@ -8,19 +8,23 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.mankart.mankgram.ui.home.HomeFragment"
+        android:name="com.mankart.mankgram.ui.mainmenu.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_new_story"
-        android:name="com.mankart.mankgram.ui.newstory.NewStoryFragment"
+        android:name="com.mankart.mankgram.ui.mainmenu.newstory.NewStoryFragment"
         android:label="@string/title_new_story"
-        tools:layout="@layout/fragment_new_story" />
+        tools:layout="@layout/fragment_new_story" >
+        <action
+            android:id="@+id/action_navigation_new_story_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_setting"
-        android:name="com.mankart.mankgram.ui.setting.SettingFragment"
+        android:name="com.mankart.mankgram.ui.mainmenu.setting.SettingFragment"
         android:label="@string/title_setting"
         tools:layout="@layout/fragment_setting" />
 

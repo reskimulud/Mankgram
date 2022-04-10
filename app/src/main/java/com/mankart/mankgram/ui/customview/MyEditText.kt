@@ -1,4 +1,4 @@
-package com.mankart.mankgram.customview
+package com.mankart.mankgram.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas

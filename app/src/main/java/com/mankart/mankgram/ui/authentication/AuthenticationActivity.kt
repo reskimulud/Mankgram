@@ -1,4 +1,4 @@
-package com.mankart.mankgram.authentication
+package com.mankart.mankgram.ui.authentication
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
