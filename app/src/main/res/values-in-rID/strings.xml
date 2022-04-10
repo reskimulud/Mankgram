@@ -38,4 +38,5 @@
     <string name="gallery">Galeri</string>
     <string name="error_pick_image">Error mengambli gambar</string>
     <string name="error_showing_camera">Gagal memunculkan kamera</string>
+    <string name="permission_not_granted">Izin tidak diberikan</string>
 </resources>

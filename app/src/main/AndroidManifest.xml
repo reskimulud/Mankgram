@@ -16,13 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankgram">
         <activity
-            android:name=".CameraActivity"
+            android:name=".ui.mainmenu.newstory.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name="com.mankart.mankgram.ui.authentication.AuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

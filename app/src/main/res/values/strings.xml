@@ -37,4 +37,5 @@
     <string name="gallery">Gallery</string>
     <string name="error_pick_image">Error pick image</string>
     <string name="error_showing_camera">Error showing camera</string>
+    <string name="permission_not_granted">Permission not granted</string>
 </resources>
