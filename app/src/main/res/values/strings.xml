@@ -33,4 +33,8 @@
     <string name="upload_failed">Upload failed</string>
     <string name="upload_success">Upload success</string>
     <string name="uploading">Uploading…</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="error_pick_image">Error pick image</string>
+    <string name="error_showing_camera">Error showing camera</string>
 </resources>

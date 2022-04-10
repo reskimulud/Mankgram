@@ -34,4 +34,8 @@
     <string name="upload_failed">Unggah gagal</string>
     <string name="upload_success">Unggah berhasil</string>
     <string name="uploading">Megunggah…</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="error_pick_image">Error mengambli gambar</string>
+    <string name="error_showing_camera">Gagal memunculkan kamera</string>
 </resources>

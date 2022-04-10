@@ -3,6 +3,7 @@ package com.mankart.mankgram.ui.newstory
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.mankart.mankgram.*
 import com.mankart.mankgram.databinding.FragmentNewStoryBinding
@@ -46,11 +48,12 @@ class NewStoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         factory = ViewModelFactory.getInstance(requireActivity())
-        startCameraX()
         navView = requireActivity().findViewById(R.id.nav_view)
         navView.visibility = View.GONE
 
         binding.previewImage.setOnClickListener { startCameraX() }
+        binding.btnCamera.setOnClickListener { startCameraX() }
+        binding.btnGallery.setOnClickListener { startGallery() }
 
         initObserve()
 
@@ -138,11 +141,33 @@ class NewStoryFragment : Fragment() {
         }
     }
 
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+
+            val myFile = uriToFile(selectedImg, requireActivity())
+
+            getFile = myFile
+
+            binding.uploadStory.isEnabled = true
+            binding.previewImage.setImageURI(selectedImg)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         navView.visibility = View.VISIBLE
-        result.recycle()
     }
 
     companion object {

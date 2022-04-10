@@ -42,6 +42,12 @@ class HomeFragment : Fragment() {
             binding.tvWelcomeName.text = it
         }
 
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = true
+            homeViewModel.getUserStories()
+        }
+
+        binding.refreshLayout.isRefreshing = true
         homeViewModel.getUserStories()
 
         initRecycler()
@@ -52,6 +58,7 @@ class HomeFragment : Fragment() {
         listStoryAdapter = ListStoryAdapter()
         homeViewModel.userStories.observe(viewLifecycleOwner) {
             listStoryAdapter.setData(it)
+            binding.refreshLayout.isRefreshing = false
         }
         binding.rvStory.adapter = listStoryAdapter
     }

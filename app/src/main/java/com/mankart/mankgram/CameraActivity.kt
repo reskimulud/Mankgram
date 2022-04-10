@@ -65,7 +65,7 @@ class CameraActivity : AppCompatActivity() {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        getString(R.string.error_pick_image),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -110,7 +110,7 @@ class CameraActivity : AppCompatActivity() {
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
-                    "Gagal memunculkan kamera.",
+                    getString(R.string.error_showing_camera),
                     Toast.LENGTH_SHORT
                 ).show()
             }
