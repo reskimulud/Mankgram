@@ -3,6 +3,7 @@ package com.mankart.mankgram
 import android.animation.ObjectAnimator
 import android.content.res.Resources
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,11 +35,13 @@ class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>()
 
         holder.apply {
             name.text = repo.name
+            Log.e("Adapter", "${repo.image}")
             Glide.with(itemView.context)
-                .load("https://via.placeholder.com/${image.height}x${image.width}")
+                .load(repo.image)
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.placeholder_image)
                 .into(image)
+            description.text = repo.description
 
             holder.detail.setOnClickListener {
                 TransitionManager.beginDelayedTransition(itemView as ViewGroup)

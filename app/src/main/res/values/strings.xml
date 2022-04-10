@@ -26,4 +26,15 @@
     <string name="wrong_credential">Wrong username or password</string>
     <string name="register_success">Register success</string>
     <string name="register_failed">Register failed</string>
+    <string name="welcome">Welcome</string>
+    <string name="title_description">Description</string>
+    <string name="upload_story">Upload Story</string>
+    <string name="enter_description">Please enter description</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="upload_success">Upload success</string>
+    <string name="uploading">Uploading…</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="error_pick_image">Error pick image</string>
+    <string name="error_showing_camera">Error showing camera</string>
 </resources>

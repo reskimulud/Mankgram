@@ -49,18 +49,43 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/welcome"
+                    android:textColor="@color/colorBase"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintStart_toStartOf="@+id/app_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/app_logo" />
+
+                <TextView
+                    android:id="@+id/tv_welcome_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/name"
+                    android:textColor="@color/colorBase"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_welcome"
+                    app:layout_constraintStart_toEndOf="@+id/tv_welcome"
+                    app:layout_constraintTop_toTopOf="@+id/tv_welcome"
+                    tools:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/textView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24sp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="24dp"
                     android:text="@string/tag_line"
                     android:textColor="@color/colorBase"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/app_logo"
-                    app:layout_constraintTop_toBottomOf="@+id/app_logo" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_welcome"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,8 +100,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:paddingTop="8dp"
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_content_scroll"
@@ -91,9 +117,7 @@
                 android:id="@+id/rv_story"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_row_story">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                tools:listitem="@layout/item_row_story" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -102,6 +126,6 @@
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

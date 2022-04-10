@@ -10,10 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mankart.mankgram.ListStoryAdapter
 import com.mankart.mankgram.StoryModel
+import com.mankart.mankgram.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private lateinit var factory: ViewModelFactory
+    private val homeViewModel: HomeViewModel by activityViewModels { factory }
     private var _binding: FragmentHomeBinding? = null
     private lateinit var listStoryAdapter: ListStoryAdapter
 
@@ -28,41 +30,36 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        initRecycler()
         return binding.root
     }
 
-    private fun initRecycler() {
-        val data: ArrayList<StoryModel> = arrayListOf(
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-            StoryModel(name = "Reski Mulud Muchamad"),
-        )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        factory = ViewModelFactory.getInstance(requireActivity())
+
+        homeViewModel.getName().observe(viewLifecycleOwner) {
+            binding.tvWelcomeName.text = it
+        }
+
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = true
+            homeViewModel.getUserStories()
+        }
+
+        binding.refreshLayout.isRefreshing = true
+        homeViewModel.getUserStories()
+
+        initRecycler()
+    }
+
+    private fun initRecycler() {
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
-        listStoryAdapter.setData(data)
+        homeViewModel.userStories.observe(viewLifecycleOwner) {
+            listStoryAdapter.setData(it)
+            binding.refreshLayout.isRefreshing = false
+        }
         binding.rvStory.adapter = listStoryAdapter
     }
 

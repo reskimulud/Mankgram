@@ -16,7 +16,11 @@
         android:id="@+id/navigation_new_story"
         android:name="com.mankart.mankgram.ui.newstory.NewStoryFragment"
         android:label="@string/title_new_story"
-        tools:layout="@layout/fragment_new_story" />
+        tools:layout="@layout/fragment_new_story" >
+        <action
+            android:id="@+id/action_navigation_new_story_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_setting"
