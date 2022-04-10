@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="@string/uploading"
             android:textColor="@color/colorText"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

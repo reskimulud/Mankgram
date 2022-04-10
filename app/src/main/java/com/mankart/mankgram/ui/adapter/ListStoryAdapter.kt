@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.ItemRowStoryBinding
 import com.mankart.mankgram.model.StoryModel
+import com.mankart.mankgram.utils.DiffUtilCallback
 
 class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>() {
     private var listStory = ArrayList<StoryModel>()
@@ -66,8 +68,10 @@ class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>()
     override fun getItemCount(): Int = listStory.size
 
     fun setData(newData: ArrayList<StoryModel>) {
-        listStory.clear()
-        listStory.addAll(newData)
-        notifyDataSetChanged()
+        val diffUtilCallback = DiffUtilCallback(listStory, newData)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
+
+        listStory = newData
+        diffResult.dispatchUpdatesTo(this)
     }
 }
