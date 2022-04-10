@@ -3,6 +3,8 @@ package com.mankart.mankgram
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.mankart.mankgram.network.ApiService
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 
 class UserRepository(
@@ -52,6 +54,8 @@ class UserRepository(
     }
 
     fun getUserStories() = apiService.getUserStories()
+
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody) = apiService.postUserStory(photo, description)
 
     companion object {
         @Volatile

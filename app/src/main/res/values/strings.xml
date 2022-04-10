@@ -30,4 +30,7 @@
     <string name="title_description">Description</string>
     <string name="upload_story">Upload Story</string>
     <string name="enter_description">Please enter description</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="upload_success">Upload success</string>
+    <string name="uploading">Uploading…</string>
 </resources>

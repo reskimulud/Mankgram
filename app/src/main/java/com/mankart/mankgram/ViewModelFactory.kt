@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mankart.mankgram.authentication.AuthenticationViewModel
 import com.mankart.mankgram.ui.home.HomeViewModel
+import com.mankart.mankgram.ui.newstory.NewStoryViewModel
 import com.mankart.mankgram.ui.setting.SettingViewModel
 
 class ViewModelFactory private constructor(private val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -14,6 +15,7 @@ class ViewModelFactory private constructor(private val userRepository: UserRepos
             modelClass.isAssignableFrom(SettingViewModel::class.java) -> SettingViewModel(userRepository) as T
             modelClass.isAssignableFrom(AuthenticationViewModel::class.java) -> AuthenticationViewModel(userRepository) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(userRepository) as T
+            modelClass.isAssignableFrom(NewStoryViewModel::class.java) -> NewStoryViewModel(userRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
