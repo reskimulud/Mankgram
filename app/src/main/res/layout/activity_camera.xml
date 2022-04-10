@@ -21,7 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_camera_24"
-        app:tint="@color/colorAccent"/>
+        app:tint="@color/colorAccent"
+        android:contentDescription="@string/cd_capture" />
 
     <ImageView
         android:id="@+id/switch_camera"
@@ -32,6 +33,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_finder"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_flip_camera_android_24"
-        app:tint="@android:color/white"/>
+        app:tint="@android:color/white"
+        android:contentDescription="@string/cd_switch_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

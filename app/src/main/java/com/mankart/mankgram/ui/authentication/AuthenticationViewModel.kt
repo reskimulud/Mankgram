@@ -39,11 +39,11 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
                 _loading.value = Event(false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.loginResult
+                    _error.value = Event(false)
                     userRepository.appExecutors.networkIO.execute {
                         Log.e("AuthenticationViewModel", "userLogin: $responseBody")
                         _user.postValue(Event(responseBody!!))
                     }
-                    _error.value = Event(false)
                 } else {
                     Log.e("AuthenticationViewModel", "onResponse fail: ")
                     _message.value = Event(response.message())

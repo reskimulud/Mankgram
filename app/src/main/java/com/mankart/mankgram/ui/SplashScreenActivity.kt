@@ -43,12 +43,14 @@ class SplashScreenActivity : AppCompatActivity() {
         authenticationViewModel.getUserToken().observe(this) { token ->
             if (token.isNullOrEmpty() || token == "not_set_yet") {
                 Handler(Looper.getMainLooper()).postDelayed({
-                    startActivity(Intent(this@SplashScreenActivity, AuthenticationActivity::class.java))
+                    val intent = Intent(this@SplashScreenActivity, AuthenticationActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }, delayMillis)
             } else {
                 Handler(Looper.getMainLooper()).postDelayed({
-                    startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                    val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }, delayMillis)
             }

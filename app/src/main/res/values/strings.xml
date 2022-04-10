@@ -38,4 +38,7 @@
     <string name="error_pick_image">Error pick image</string>
     <string name="error_showing_camera">Error showing camera</string>
     <string name="permission_not_granted">Permission not granted</string>
+    <string name="cd_switch_camera">Button to switch to front or rear camera</string>
+    <string name="cd_capture">Button to capture image</string>
+    <string name="cd_preview">Preview image captured by camera or from gallery</string>
 </resources>

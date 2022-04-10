@@ -51,7 +51,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            android:contentDescription="@string/cd_preview" />
 
 
         <EditText
@@ -73,15 +74,15 @@
             android:id="@+id/tv_uploading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="@string/uploading"
             android:textColor="@color/colorText"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/upload_story"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -96,7 +97,8 @@
                 android:layout_margin="16dp"
                 android:layout_weight="1"
                 android:text="@string/gallery"
-                android:textColor="@color/colorBase"/>
+                android:textColor="@color/colorBase"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/btn_camera"
@@ -105,7 +107,8 @@
                 android:layout_margin="16dp"
                 android:layout_weight="1"
                 android:text="@string/camera"
-                android:textColor="@color/colorBase"/>
+                android:textColor="@color/colorBase"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
         <Button

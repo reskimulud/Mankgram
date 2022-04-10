@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.mankart.mankgram.ui.mainmenu.MainActivity"
             android:exported="true" />
     </application>
 

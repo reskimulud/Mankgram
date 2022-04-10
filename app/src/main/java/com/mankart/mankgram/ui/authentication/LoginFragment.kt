@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.mankart.mankgram.R
-import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentLoginBinding
+import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.ui.mainmenu.MainActivity
 
 class LoginFragment : Fragment() {
@@ -66,7 +66,8 @@ class LoginFragment : Fragment() {
                                 }
                             }
                             authenticationViewModel.saveUserEmail(email)
-                            startActivity(Intent(activity, MainActivity::class.java))
+                            val intent = Intent(activity, MainActivity::class.java)
+                            startActivity(intent)
                             activity?.finish()
                         } else {
                             val msg = getString(R.string.wrong_credential)
