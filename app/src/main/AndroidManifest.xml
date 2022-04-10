@@ -16,10 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankgram">
         <activity
+            android:name=".ui.OnBoardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mainmenu.newstory.CameraActivity"
             android:exported="false" />
         <activity
-            android:name="com.mankart.mankgram.ui.authentication.AuthenticationActivity"
+            android:name=".ui.authentication.AuthenticationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SplashScreenActivity"
@@ -31,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mankart.mankgram.ui.mainmenu.MainActivity"
+            android:name=".ui.mainmenu.MainActivity"
             android:exported="true" />
     </application>
 
