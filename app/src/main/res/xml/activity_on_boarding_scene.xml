@@ -156,6 +156,14 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="95dp"
             android:id="@+id/main_logo" />
+        <Constraint
+            android:id="@+id/textView8"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            android:alpha="0"
+            motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
     <Transition
         motion:constraintSetStart="@+id/motion2"

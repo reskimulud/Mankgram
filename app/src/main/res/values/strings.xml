@@ -42,5 +42,5 @@
     <string name="cd_capture">Button to capture image</string>
     <string name="cd_preview">Preview image captured by camera or from gallery</string>
     <string name="start">Start</string>
-    <string name="swift"><![CDATA[Swift >>]]></string>
+    <string name="swift"><![CDATA[Swipe >>]]></string>
 </resources>
