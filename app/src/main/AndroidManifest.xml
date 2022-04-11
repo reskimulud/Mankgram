@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankgram">
         <activity
+            android:theme="@style/Theme.OnBoardingStyle"
             android:name=".ui.OnBoardingActivity"
             android:exported="false" />
         <activity

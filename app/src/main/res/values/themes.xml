@@ -31,4 +31,10 @@
         <item name="android:textSize">0sp</item>
         <item name="android:textColor">@android:color/transparent</item>
     </style>
+
+    <!-- On Boarding Page -->
+    <style name="Theme.OnBoardingStyle" parent="Theme.Mankgram">
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+    </style>
 </resources>
