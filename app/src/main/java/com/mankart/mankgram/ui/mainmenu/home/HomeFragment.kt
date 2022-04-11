@@ -37,8 +37,6 @@ class HomeFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-        initObserve()
-
         binding.refreshLayout.setOnRefreshListener {
             binding.refreshLayout.isRefreshing = true
             homeViewModel.getUserStories()
@@ -47,6 +45,7 @@ class HomeFragment : Fragment() {
         binding.refreshLayout.isRefreshing = true
         homeViewModel.getUserStories()
 
+        initObserve()
         initRecycler()
     }
 
@@ -63,8 +62,8 @@ class HomeFragment : Fragment() {
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
         homeViewModel.userStories.observe(viewLifecycleOwner) {
-            listStoryAdapter.setData(it)
             binding.refreshLayout.isRefreshing = false
+            listStoryAdapter.setData(it)
         }
         binding.rvStory.adapter = listStoryAdapter
     }

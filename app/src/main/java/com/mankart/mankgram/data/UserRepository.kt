@@ -31,6 +31,9 @@ class UserRepository(
     fun getUserEmail() : LiveData<String> = pref.getUserEmail().asLiveData()
     suspend fun saveUserEmail(value: String) = pref.saveUserEmail(value)
 
+    fun getIsFirstTime() : LiveData<Boolean> = pref.isFirstTime().asLiveData()
+    suspend fun saveIsFirstTime(value: Boolean) = pref.saveIsFirstTime(value)
+
     suspend fun clearCache() = pref.clearCache()
 
     /**

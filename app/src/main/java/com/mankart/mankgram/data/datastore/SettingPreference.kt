@@ -13,6 +13,7 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     private val USER_TOKEN_KEY = stringPreferencesKey("user_token")
     private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
     private val USER_NAME_KEY = stringPreferencesKey("user_name")
+    private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
 
     /**
      * Dark Mode
@@ -67,6 +68,20 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveUserName(name: String) {
         dataStore.edit {
             it[USER_NAME_KEY] = name
+        }
+    }
+
+    /**
+     * First Time
+     */
+
+    fun isFirstTime(): Flow<Boolean> = dataStore.data.map {
+        it[FIRST_TIME_KEY] ?: true
+    }
+
+    suspend fun saveIsFirstTime(firstTime: Boolean) {
+        dataStore.edit {
+            it[FIRST_TIME_KEY] = firstTime
         }
     }
 

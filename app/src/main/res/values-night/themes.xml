@@ -18,11 +18,22 @@
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">@color/colorBase</item>
         <item name="backgroundColor">@color/colorBase</item>
+
+        <!-- Transition Animation -->
+        <item name="android:windowActivityTransitions">true</item>-->
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
     <!-- App Bar style -->
     <style name="expandedBarTextStyle" parent="Theme.Mankgram">
         <item name="android:textSize">0sp</item>
         <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <!-- On Boarding Page -->
+    <style name="OnBoardingStyle" parent="Theme.Mankgram">
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
     </style>
 </resources>

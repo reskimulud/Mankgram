@@ -41,4 +41,6 @@
     <string name="cd_switch_camera">Button to switch to front or rear camera</string>
     <string name="cd_capture">Button to capture image</string>
     <string name="cd_preview">Preview image captured by camera or from gallery</string>
+    <string name="start">Start</string>
+    <string name="swift"><![CDATA[Swift >>]]></string>
 </resources>

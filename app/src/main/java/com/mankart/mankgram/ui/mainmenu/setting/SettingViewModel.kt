@@ -19,4 +19,11 @@ class SettingViewModel(private val userRepository: UserRepository) : ViewModel()
 
     fun getUserEmail(): LiveData<String> = userRepository.getUserEmail()
 
+    fun getIsFirstTime(): LiveData<Boolean> = userRepository.getIsFirstTime()
+    fun saveIsFirstTime(value: Boolean) {
+        viewModelScope.launch {
+            userRepository.saveIsFirstTime(value)
+        }
+    }
+
 }
