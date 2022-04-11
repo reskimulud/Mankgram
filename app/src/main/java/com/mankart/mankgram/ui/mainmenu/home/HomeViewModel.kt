@@ -18,12 +18,14 @@ class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
     private var _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
 
+    fun getUserToken() = userRepository.getUserToken()
+
     fun getName(): LiveData<String> {
         return userRepository.getUserName()
     }
 
-    fun getUserStories() {
-        val client = userRepository.getUserStories()
+    fun getUserStories(token: String) {
+        val client = userRepository.getUserStories(token)
         client.enqueue(object : Callback<UserResponse>{
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {

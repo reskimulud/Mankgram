@@ -1,5 +1,6 @@
 package com.mankart.mankgram.data.datastore
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -40,6 +41,7 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveUserToken(token: String) {
         dataStore.edit {
             it[USER_TOKEN_KEY] = token
+            Log.e("SettingPreference", "Token saved! saveUserToken: $token")
         }
     }
 

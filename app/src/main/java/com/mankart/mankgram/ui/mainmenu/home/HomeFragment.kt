@@ -1,6 +1,7 @@
 package com.mankart.mankgram.ui.mainmenu.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +39,20 @@ class HomeFragment : Fragment() {
         factory = ViewModelFactory.getInstance(requireActivity())
 
         binding.refreshLayout.setOnRefreshListener {
-            binding.refreshLayout.isRefreshing = true
-            homeViewModel.getUserStories()
+            fetchUserStories()
         }
-
-        binding.refreshLayout.isRefreshing = true
-        homeViewModel.getUserStories()
+        fetchUserStories()
 
         initObserve()
         initRecycler()
+    }
+
+    private fun fetchUserStories() {
+        homeViewModel.getUserToken().observe(viewLifecycleOwner) {
+            binding.refreshLayout.isRefreshing = true
+            homeViewModel.getUserStories(it)
+            Log.e("Home", "Token: $it")
+        }
     }
 
     private fun initObserve() {
