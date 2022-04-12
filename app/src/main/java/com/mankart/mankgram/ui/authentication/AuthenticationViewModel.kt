@@ -102,8 +102,6 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
         }
     }
 
-    fun getUserName() = userRepository.getUserName()
-
     fun saveUserName(name: String?) {
         viewModelScope.launch {
             if (name != null) {
@@ -111,8 +109,6 @@ class AuthenticationViewModel(private val userRepository: UserRepository) : View
             }
         }
     }
-
-    fun getUserEmail() = userRepository.getUserEmail()
 
     fun saveUserEmail(email: String) {
         viewModelScope.launch {

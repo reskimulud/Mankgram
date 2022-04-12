@@ -87,6 +87,7 @@ class NewStoryFragment : Fragment() {
                 if (!error) {
                     Toast.makeText(activity, getString(R.string.upload_success), Toast.LENGTH_LONG).show()
                     startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
                 }
             }
         }
