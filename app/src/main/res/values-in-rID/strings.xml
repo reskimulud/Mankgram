@@ -42,4 +42,6 @@
     <string name="cd_switch_camera">Tombol untuk beralih ke kamera depan atau belakang</string>
     <string name="cd_capture">Tombol untuk menangkap gambar</string>
     <string name="cd_preview">Pratampil gambar hasil tangkapan kamera atau dari galeri</string>
+    <string name="start">Mulai</string>
+    <string name="swift"><![CDATA[Swipe >>]]></string>
 </resources>

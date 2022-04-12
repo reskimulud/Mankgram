@@ -1,6 +1,7 @@
 package com.mankart.mankgram.ui.mainmenu.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,17 +38,21 @@ class HomeFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-        initObserve()
-
         binding.refreshLayout.setOnRefreshListener {
-            binding.refreshLayout.isRefreshing = true
-            homeViewModel.getUserStories()
+            fetchUserStories()
         }
+        fetchUserStories()
 
-        binding.refreshLayout.isRefreshing = true
-        homeViewModel.getUserStories()
-
+        initObserve()
         initRecycler()
+    }
+
+    private fun fetchUserStories() {
+        homeViewModel.getUserToken().observe(viewLifecycleOwner) {
+            binding.refreshLayout.isRefreshing = true
+            homeViewModel.getUserStories(it)
+            Log.e("Home", "Token: $it")
+        }
     }
 
     private fun initObserve() {
@@ -63,8 +68,8 @@ class HomeFragment : Fragment() {
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
         homeViewModel.userStories.observe(viewLifecycleOwner) {
-            listStoryAdapter.setData(it)
             binding.refreshLayout.isRefreshing = false
+            listStoryAdapter.setData(it)
         }
         binding.rvStory.adapter = listStoryAdapter
     }

@@ -1,11 +1,14 @@
 package com.mankart.mankgram.utils
 
 import android.content.Context
+import android.util.Log
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.mankart.mankgram.BuildConfig
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.UserRepository
 import com.mankart.mankgram.data.network.ApiConfig
 import com.mankart.mankgram.ui.mainmenu.dataStore
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
@@ -13,8 +16,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 object Injection {
     fun provideUserRepository(context: Context): UserRepository {
+        val appExecutors = AppExecutors()
         val pref = SettingPreference.getInstance(context.dataStore)
-        val token = runBlocking { pref.getUserToken().first() }
+
         val loggingInterceptor = if(BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {
@@ -22,12 +26,10 @@ object Injection {
         }
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(ApiInterceptor(token))
             .build()
 
+        Log.e("Injection", "Client: $client")
         val apiService = ApiConfig.getApiService(client)
-
-        val appExecutors = AppExecutors()
 
         return UserRepository.getInstance(pref, apiService, appExecutors)
     }

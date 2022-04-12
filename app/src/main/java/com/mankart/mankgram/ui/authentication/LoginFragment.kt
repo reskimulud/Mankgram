@@ -59,16 +59,18 @@ class LoginFragment : Fragment() {
                 authenticationViewModel.error.observe(viewLifecycleOwner) { event ->
                     event.getContentIfNotHandled()?.let { error ->
                         if (!error) {
+                            initObserve()
                             authenticationViewModel.user.observe(viewLifecycleOwner) { event ->
                                 event.getContentIfNotHandled()?.let {
                                     authenticationViewModel.saveUserToken(it.token)
                                     authenticationViewModel.saveUserName(it.name)
+
+                                    authenticationViewModel.saveUserEmail(email)
+                                    val intent = Intent(activity, MainActivity::class.java)
+                                    startActivity(intent)
+                                    activity?.finish()
                                 }
                             }
-                            authenticationViewModel.saveUserEmail(email)
-                            val intent = Intent(activity, MainActivity::class.java)
-                            startActivity(intent)
-                            activity?.finish()
                         } else {
                             val msg = getString(R.string.wrong_credential)
                             Toast.makeText(context, "$message: $msg", Toast.LENGTH_SHORT).show()

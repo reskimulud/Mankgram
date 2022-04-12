@@ -5,10 +5,14 @@ import androidx.lifecycle.asLiveData
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.utils.ApiInterceptor
 import com.mankart.mankgram.utils.AppExecutors
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class UserRepository(
     private val pref: SettingPreference,
@@ -30,6 +34,9 @@ class UserRepository(
 
     fun getUserEmail() : LiveData<String> = pref.getUserEmail().asLiveData()
     suspend fun saveUserEmail(value: String) = pref.saveUserEmail(value)
+
+    fun getIsFirstTime() : LiveData<Boolean> = pref.isFirstTime().asLiveData()
+    suspend fun saveIsFirstTime(value: Boolean) = pref.saveIsFirstTime(value)
 
     suspend fun clearCache() = pref.clearCache()
 
@@ -56,9 +63,31 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
-    fun getUserStories() = apiService.getUserStories()
+    fun getUserStories(token: String): Call<UserResponse> {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(ApiInterceptor(token))
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://story-api.dicoding.dev/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        val mApiService = retrofit.create(ApiService::class.java)
+        return mApiService.getUserStories()
+    }
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody) = apiService.postUserStory(photo, description)
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String): Call<UserResponse> {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(ApiInterceptor(token))
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://story-api.dicoding.dev/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        val mApiService = retrofit.create(ApiService::class.java)
+        return mApiService.postUserStory(photo, description)
+    }
 
     companion object {
         @Volatile

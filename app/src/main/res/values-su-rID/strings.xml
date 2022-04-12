@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mankgram</string>
+    <string name="cd_logo">Logo aplikasi na Mankgram</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Bumi</string>
+    <string name="title_setting">Imah</string>
+    <string name="title_notifications">Bewara</string>
+    <string name="title_new_story">Carita Anyar</string>
+    <string name="length_character">Panjang %1$s kedah leuwih ti 6 aksara</string>
+    <string name="name">Wasta</string>
+    <string name="email">Alamat surat elektronik</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Lebet</string>
+    <string name="register">Daftar</string>
+    <string name="dont_have_account">Teu gaduh akun?</string>
+    <string name="have_account">Ngagaduhan akun?</string>
+    <string name="tag_line">Tempat parantos ngalanggengkeun carita</string>
+    <string name="cd_story_image">Gambar carita anu dibagiken ku %1$s</string>
+    <string name="close">Tutup</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="set_language">Atur Basa</string>
+    <string name="dark_mode">Mode poek</string>
+    <string name="logout">Kaluar</string>
+    <string name="fill_field">Kedah diisi sadayana</string>
+    <string name="wrong_credential">Username atanapi passwordna salah</string>
+    <string name="register_success">Daftar akun berhasil</string>
+    <string name="register_failed">Daftar akun gagal</string>
+    <string name="welcome">Wilujeng sumping</string>
+    <string name="title_description">Deskripsi</string>
+    <string name="upload_story">Kirim carita</string>
+    <string name="enter_description">Jabarkeun deskripsi</string>>
+    <string name="upload_failed">Ngirim carita gagal</string>
+    <string name="upload_success">Ngirim carita berhasil</string>
+    <string name="uploading">Ngirim…</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="error_pick_image">Nyandak gambarna error</string>
+    <string name="error_showing_camera">Teu tiasa nampilkeun gambar</string>
+    <string name="permission_not_granted">Teu dipasihan izin</string>
+    <string name="cd_switch_camera">Tombol paranti ngalih ka kamera payun atanapi tukang</string>
+    <string name="cd_capture">Tombol paranti nyandak foto</string>
+    <string name="cd_preview">Nampilkeun gambar</string>
+    <string name="start">Ngawitan</string>
+    <string name="swift"><![CDATA[Swipe >>]]></string>
+    <string name="detail">Salengkapna</string>
+</resources>

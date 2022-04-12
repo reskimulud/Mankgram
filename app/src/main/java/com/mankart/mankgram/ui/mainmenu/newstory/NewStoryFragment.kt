@@ -16,6 +16,7 @@ import androidx.fragment.app.activityViewModels
 import com.mankart.mankgram.*
 import com.mankart.mankgram.databinding.FragmentNewStoryBinding
 import com.mankart.mankgram.ui.ViewModelFactory
+import com.mankart.mankgram.ui.authentication.AuthenticationViewModel
 import com.mankart.mankgram.ui.mainmenu.MainActivity
 import com.mankart.mankgram.utils.reduceFileImage
 import com.mankart.mankgram.utils.rotateBitmap
@@ -31,6 +32,7 @@ class NewStoryFragment : Fragment() {
     private var _binding: FragmentNewStoryBinding? = null
     private lateinit var factory: ViewModelFactory
     private val newStoryViewModel: NewStoryViewModel by activityViewModels { factory }
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels { factory }
     private lateinit var result: Bitmap
     private lateinit var navView: View
     private var getFile: File? = null
@@ -85,6 +87,7 @@ class NewStoryFragment : Fragment() {
                 if (!error) {
                     Toast.makeText(activity, getString(R.string.upload_success), Toast.LENGTH_LONG).show()
                     startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
                 }
             }
         }
@@ -112,7 +115,9 @@ class NewStoryFragment : Fragment() {
                 file.name,
                 requestImageFile
             )
-            newStoryViewModel.uploadStory(imageMultipart, requestDescription)
+            authenticationViewModel.getUserToken().observe(viewLifecycleOwner) { token ->
+                newStoryViewModel.uploadStory(imageMultipart, requestDescription, token)
+            }
         }
     }
 

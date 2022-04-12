@@ -40,19 +40,29 @@ class SplashScreenActivity : AppCompatActivity() {
             }
         }
 
-        authenticationViewModel.getUserToken().observe(this) { token ->
-            if (token.isNullOrEmpty() || token == "not_set_yet") {
+        settingViewModel.getIsFirstTime().observe(this) { isFirstTime ->
+            if (isFirstTime) {
                 Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = Intent(this@SplashScreenActivity, AuthenticationActivity::class.java)
+                    val intent = Intent(this@SplashScreenActivity, OnBoardingActivity::class.java)
                     startActivity(intent)
                     finish()
                 }, delayMillis)
             } else {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }, delayMillis)
+                authenticationViewModel.getUserToken().observe(this) { token ->
+                    if (token.isNullOrEmpty() || token == "not_set_yet") {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val intent = Intent(this@SplashScreenActivity, AuthenticationActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }, delayMillis)
+                    } else {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }, delayMillis)
+                    }
+                }
             }
         }
     }

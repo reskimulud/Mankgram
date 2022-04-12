@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mankgram</string>
+    <string name="cd_logo">Logotipo de la aplicación Mankgram</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Casa</string>
+    <string name="title_setting">Enterno</string>
+    <string name="title_notifications">Notificación</string>
+    <string name="title_new_story">Nueva Historia</string>
+    <string name="length_character">La longitud %1$s debe tener más de 6 caracteres</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Clave</string>
+    <string name="login">Acceso</string>
+    <string name="register">Registro</string>
+    <string name="dont_have_account">¿No tienes una cuenta?</string>
+    <string name="have_account">¿Ya tienes una cuenta?</string>
+    <string name="tag_line">Un gran lugar para capturar tu historia.</string>
+    <string name="cd_story_image">Foto de historia compartida por %1$s</string>
+    <string name="detail">Detalle</string>
+    <string name="close">Cerrar</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="set_language">Elegir lenguaje</string>
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="fill_field">Por favor complete todos los campos</string>
+    <string name="wrong_credential">Nombre de usuario o contraseña incorrectos</string>
+    <string name="register_success">Registro exitoso</string>
+    <string name="register_failed">Registro fallido</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="title_description">Descripción</string>
+    <string name="upload_story">Subir Historia</string>
+    <string name="enter_description">Por favor ingrese la descripción</string>
+    <string name="upload_failed">Subida fallida</string>
+    <string name="upload_success">Subida exitosa</string>
+    <string name="uploading">Cargando</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="error_pick_image">Imagen de selección de error</string>
+    <string name="error_showing_camera">Error al mostrar la cámara</string>
+    <string name="permission_not_granted">Permiso no concedido</string>
+    <string name="cd_switch_camera">Botón para cambiar a cámara delantera o trasera</string>
+    <string name="cd_capture">Botón para capturar imagen</string>
+    <string name="cd_preview">Vista previa de la imagen capturada por la cámara o desde la galería</string>
+    <string name="start">Comienzo</string>
+    <string name="swift"><![CDATA[Swipe >>]]></string>
+</resources>

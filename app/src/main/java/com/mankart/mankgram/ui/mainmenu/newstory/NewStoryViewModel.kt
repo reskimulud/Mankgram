@@ -23,9 +23,9 @@ class NewStoryViewModel(private val userRepository: UserRepository): ViewModel()
     private var _loading = MutableLiveData<Event<Boolean>>()
     val loading: LiveData<Event<Boolean>> = _loading
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody) {
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String) {
         _loading.value = Event(true)
-        val client = userRepository.uploadStory(photo, description)
+        val client = userRepository.uploadStory(photo, description, token)
         client.enqueue(object: Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 userRepository.appExecutors.networkIO.execute {
