@@ -38,9 +38,9 @@ class HomeFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-//        binding.refreshLayout.setOnRefreshListener {
-//            fetchUserStories()
-//        }
+        binding.refreshLayout.setOnRefreshListener {
+            fetchUserStories()
+        }
         fetchUserStories()
 
         initObserve()
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 
     private fun fetchUserStories() {
         homeViewModel.getUserToken().observe(viewLifecycleOwner) {
-//            binding.refreshLayout.isRefreshing = true
+            binding.refreshLayout.isRefreshing = true
             homeViewModel.getUserStories(it)
             Log.e("Home", "Token: $it")
         }
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         binding.rvStory.layoutManager = LinearLayoutManager(activity)
         listStoryAdapter = ListStoryAdapter()
         homeViewModel.userStories.observe(viewLifecycleOwner) {
-//            binding.refreshLayout.isRefreshing = false
+            binding.refreshLayout.isRefreshing = false
             listStoryAdapter.setData(it)
         }
         binding.rvStory.adapter = listStoryAdapter
