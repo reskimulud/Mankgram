@@ -1,25 +1,33 @@
 package com.mankart.mankgram.ui.mapviewstory
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentMapsBinding
+import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.ui.mainmenu.MainActivity
 
 class MapsFragment : Fragment() {
     private var _binding: FragmentMapsBinding? = null
+    private lateinit var factory: ViewModelFactory
+    private val mapViewStoryViewModel: MapViewStoryViewModel by activityViewModels { factory }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -42,6 +50,15 @@ class MapsFragment : Fragment() {
         googleMap.uiSettings.isMapToolbarEnabled = true
         googleMap.uiSettings.isIndoorLevelPickerEnabled = true
 
+        mapViewStoryViewModel.getMapType().observe(viewLifecycleOwner) {
+            when (it) {
+                MapType.NORMAL -> setMapType(googleMap, MapType.NORMAL)
+                MapType.SATELLITE -> setMapType(googleMap, MapType.SATELLITE)
+                MapType.TERRAIN -> setMapType(googleMap, MapType.TERRAIN)
+                else -> setMapType(googleMap, MapType.NORMAL)
+            }
+        }
+
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
@@ -54,6 +71,8 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        factory = ViewModelFactory.getInstance(requireActivity())
 
         binding.backArrow.setOnClickListener {
             startActivity(Intent(activity, MainActivity::class.java))
@@ -72,6 +91,20 @@ class MapsFragment : Fragment() {
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    private fun setMapType(mMap: GoogleMap, mapType: MapType) {
+        when (mapType) {
+            MapType.NORMAL -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+            }
+            MapType.SATELLITE -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+            }
+            MapType.TERRAIN -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            }
+        }
     }
 
     override fun onDestroy() {

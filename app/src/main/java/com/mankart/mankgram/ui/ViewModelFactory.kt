@@ -8,6 +8,7 @@ import com.mankart.mankgram.ui.authentication.AuthenticationViewModel
 import com.mankart.mankgram.ui.mainmenu.home.HomeViewModel
 import com.mankart.mankgram.ui.mainmenu.newstory.NewStoryViewModel
 import com.mankart.mankgram.ui.mainmenu.setting.SettingViewModel
+import com.mankart.mankgram.ui.mapviewstory.MapViewStoryViewModel
 import com.mankart.mankgram.utils.Injection
 
 class ViewModelFactory private constructor(private val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -18,6 +19,7 @@ class ViewModelFactory private constructor(private val userRepository: UserRepos
             modelClass.isAssignableFrom(AuthenticationViewModel::class.java) -> AuthenticationViewModel(userRepository) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(userRepository) as T
             modelClass.isAssignableFrom(NewStoryViewModel::class.java) -> NewStoryViewModel(userRepository) as T
+            modelClass.isAssignableFrom(MapViewStoryViewModel::class.java) -> MapViewStoryViewModel(userRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.mankart.mankgram.ui.mapviewstory.MapType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -15,6 +16,7 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
     private val USER_NAME_KEY = stringPreferencesKey("user_name")
     private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
+    private val MAP_TYPE_KEY = stringPreferencesKey("map_type")
 
     /**
      * Dark Mode
@@ -84,6 +86,30 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveIsFirstTime(firstTime: Boolean) {
         dataStore.edit {
             it[FIRST_TIME_KEY] = firstTime
+        }
+    }
+
+    /**
+     * Map Type
+     */
+
+    fun getMapType(): Flow<MapType> = dataStore.data.map {
+        when (it[MAP_TYPE_KEY]) {
+            MapType.NORMAL.name -> MapType.NORMAL
+            MapType.SATELLITE.name -> MapType.SATELLITE
+            MapType.TERRAIN.name -> MapType.TERRAIN
+            else -> MapType.NORMAL
+        }
+    }
+
+    suspend fun saveMapType(mapType: MapType) {
+        dataStore.edit {
+            it[MAP_TYPE_KEY] = when (mapType) {
+                MapType.NORMAL -> MapType.NORMAL.name
+                MapType.SATELLITE -> MapType.SATELLITE.name
+                MapType.TERRAIN -> MapType.TERRAIN.name
+                else -> MapType.NORMAL.name
+            }
         }
     }
 

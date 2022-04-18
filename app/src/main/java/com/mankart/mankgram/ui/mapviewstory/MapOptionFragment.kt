@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentMapOptionBinding
+import com.mankart.mankgram.ui.ViewModelFactory
 
 class MapOptionFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentMapOptionBinding? = null
+    private lateinit var factory: ViewModelFactory
+    private val mapViewStoryViewModel: MapViewStoryViewModel by activityViewModels { factory }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,7 +32,21 @@ class MapOptionFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        factory = ViewModelFactory.getInstance(requireActivity())
+
         onClickListener()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        mapViewStoryViewModel.getMapType().observe(viewLifecycleOwner) {
+            when (it) {
+                MapType.NORMAL -> highlightMapTypeSwitcher(MapType.NORMAL)
+                MapType.SATELLITE -> highlightMapTypeSwitcher(MapType.SATELLITE)
+                MapType.TERRAIN -> highlightMapTypeSwitcher(MapType.TERRAIN)
+                else -> highlightMapTypeSwitcher(MapType.NORMAL)
+            }
+        }
     }
 
     private fun onClickListener() {
@@ -37,21 +55,21 @@ class MapOptionFragment : BottomSheetDialogFragment() {
         }
 
         binding.cvMapDefault.setOnClickListener {
-            highlightMapTypeSwitcher(MapType.NORMAL)
-            Toast.makeText(context, "Default", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapType(MapType.NORMAL)
+            Toast.makeText(context, getString(R.string.map_type_normal), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
 
         binding.cvMapSatellite.setOnClickListener {
-            highlightMapTypeSwitcher(MapType.SATELLITE)
-            Toast.makeText(context, "Satellite", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapType(MapType.SATELLITE)
+            Toast.makeText(context, getString(R.string.map_type_satellite), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
 
         binding.cvMapTerrain.setOnClickListener {
-            highlightMapTypeSwitcher(MapType.TERRAIN)
-            Toast.makeText(context, "Terrain", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapType(MapType.TERRAIN)
+            Toast.makeText(context, getString(R.string.map_type_terrain), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
 
         binding.cvMapStyleDefault.setOnClickListener {

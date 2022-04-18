@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.ui.mapviewstory.MapType
 import com.mankart.mankgram.utils.ApiInterceptor
 import com.mankart.mankgram.utils.AppExecutors
 import okhttp3.MultipartBody
@@ -37,6 +38,9 @@ class UserRepository(
 
     fun getIsFirstTime() : LiveData<Boolean> = pref.isFirstTime().asLiveData()
     suspend fun saveIsFirstTime(value: Boolean) = pref.saveIsFirstTime(value)
+
+    fun getMapType() : LiveData<MapType> = pref.getMapType().asLiveData()
+    suspend fun saveMapType(value: MapType) = pref.saveMapType(value)
 
     suspend fun clearCache() = pref.clearCache()
 
