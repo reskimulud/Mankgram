@@ -37,25 +37,43 @@ class MapOptionFragment : BottomSheetDialogFragment() {
         }
 
         binding.cvMapDefault.setOnClickListener {
-            highlightSwitcher(MapType.NORMAL)
+            highlightMapTypeSwitcher(MapType.NORMAL)
             Toast.makeText(context, "Default", Toast.LENGTH_SHORT).show()
 //            dismiss()
         }
 
         binding.cvMapSatellite.setOnClickListener {
-            highlightSwitcher(MapType.SATELLITE)
+            highlightMapTypeSwitcher(MapType.SATELLITE)
             Toast.makeText(context, "Satellite", Toast.LENGTH_SHORT).show()
 //            dismiss()
         }
 
         binding.cvMapTerrain.setOnClickListener {
-            highlightSwitcher(MapType.TERRAIN)
+            highlightMapTypeSwitcher(MapType.TERRAIN)
             Toast.makeText(context, "Terrain", Toast.LENGTH_SHORT).show()
+//            dismiss()
+        }
+
+        binding.cvMapStyleDefault.setOnClickListener {
+            highlightMapStyleSwitcher(MapStyle.NORMAL)
+            Toast.makeText(context, "Default", Toast.LENGTH_SHORT).show()
+//            dismiss()
+        }
+
+        binding.cvMapStyleNight.setOnClickListener {
+            highlightMapStyleSwitcher(MapStyle.NIGHT)
+            Toast.makeText(context, "Night", Toast.LENGTH_SHORT).show()
+//            dismiss()
+        }
+
+        binding.cvMapStyleSilver.setOnClickListener {
+            highlightMapStyleSwitcher(MapStyle.SILVER)
+            Toast.makeText(context, "Silver", Toast.LENGTH_SHORT).show()
 //            dismiss()
         }
     }
 
-    private fun highlightSwitcher(type: MapType) {
+    private fun highlightMapTypeSwitcher(type: MapType) {
         when (type) {
             MapType.NORMAL -> {
                 // Normal
@@ -95,6 +113,50 @@ class MapOptionFragment : BottomSheetDialogFragment() {
                 // Terrain
                 binding.ivMapTerrain.setPadding(1, 1, 1, 1)
                 binding.tvMapTerrain.setTextColor(resources.getColor(R.color.colorAccent))
+            }
+        }
+    }
+
+    private fun highlightMapStyleSwitcher(style: MapStyle) {
+        when (style) {
+            MapStyle.NORMAL -> {
+                // Normal
+                binding.ivMapStyleDefault.setPadding(1, 1, 1, 1)
+                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorAccent))
+
+                // Night
+                binding.ivMapStyleNight.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorTextSecondary))
+
+                // Silver
+                binding.ivMapStyleSilver.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorTextSecondary))
+            }
+            MapStyle.NIGHT -> {
+                // Normal
+                binding.ivMapStyleDefault.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorTextSecondary))
+
+                // Night
+                binding.ivMapStyleNight.setPadding(1, 1, 1, 1)
+                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorAccent))
+
+                // Silver
+                binding.ivMapStyleSilver.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorTextSecondary))
+            }
+            MapStyle.SILVER -> {
+                // Normal
+                binding.ivMapStyleDefault.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorTextSecondary))
+
+                // Night
+                binding.ivMapStyleNight.setPadding(0, 0, 0, 0)
+                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorTextSecondary))
+
+                // Terrain
+                binding.ivMapStyleSilver.setPadding(1, 1, 1, 1)
+                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorAccent))
             }
         }
     }

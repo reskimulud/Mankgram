@@ -9,25 +9,37 @@
     android:padding="24dp"
     tools:context=".ui.mapviewstory.MapOptionFragment">
 
+    <View
+        android:id="@+id/view_top"
+        android:layout_width="30dp"
+        android:layout_height="5dp"
+        android:alpha="0.5"
+        android:background="@color/colorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/bg_bottom_nav" />
 
     <TextView
         android:id="@+id/tv_map_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/map_type"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view_top" />
 
     <ImageView
         android:id="@+id/iv_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/colorText"/>
+        app:layout_constraintTop_toBottomOf="@+id/view_top"
+        app:tint="@color/colorText" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_map_default"
@@ -118,15 +130,125 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_map_terrain" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="192dp"
         android:layout_marginEnd="24dp"
         android:alpha="0.5"
-        android:background="@color/colorText"
+        android:background="@drawable/bg_bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_map_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/map_style"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/map_style_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tv_map_style_normal,cv_map_style_night,cv_map_style_default,tv_map_style_silver,cv_map_style_silver,tv_map_style_night,tv_map_style"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_style_default"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_style">
+
+        <ImageView
+            android:id="@+id/iv_map_style_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_default" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_style_night"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_style">
+
+        <ImageView
+            android:id="@+id/iv_map_style_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_style_night" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_style_silver"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_style">
+
+        <ImageView
+            android:id="@+id/iv_map_style_silver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_style_silver" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_map_style_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_style_normal"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_style_default"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_style_default"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_style_default" />
+
+    <TextView
+        android:id="@+id/tv_map_style_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_style_night"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_style_night"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_style_night"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_style_night" />
+
+    <TextView
+        android:id="@+id/tv_map_style_silver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_style_silver"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_style_silver"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_style_silver"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_style_silver" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
