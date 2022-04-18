@@ -1,20 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mapviewstory.MapOptionFragment"
-    android:orientation="vertical">
+    android:background="@color/colorBase"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".ui.mapviewstory.MapOptionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/description" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_map_type"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/description" />
+        android:text="@string/map_type"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorText"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_default"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_type">
+
+        <ImageView
+            android:id="@+id/iv_map_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_default" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_satellite"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_type">
+
+        <ImageView
+            android:id="@+id/iv_map_satellite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_satellite" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_map_terrain"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="13dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_type">
+
+        <ImageView
+            android:id="@+id/iv_map_terrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_map_terrain" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_map_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_type_normal"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_default"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_default"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_default" />
+
+    <TextView
+        android:id="@+id/tv_map_satellite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_type_satellite"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_satellite"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_satellite"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_satellite" />
+
+    <TextView
+        android:id="@+id/tv_map_terrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/map_type_terrain"
+        android:textColor="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/cv_map_terrain"
+        app:layout_constraintStart_toStartOf="@+id/cv_map_terrain"
+        app:layout_constraintTop_toBottomOf="@+id/cv_map_terrain" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="24dp"
+        android:alpha="0.5"
+        android:background="@color/colorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

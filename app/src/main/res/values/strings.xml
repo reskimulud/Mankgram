@@ -46,4 +46,8 @@
     <string name="title_activity_map_view_story">MapViewStoryActivity</string>
     <string name="map_view">Map View</string>
     <string name="map_style">Map Style</string>
+    <string name="map_type">Map Type</string>
+    <string name="map_type_normal">Normal</string>
+    <string name="map_type_satellite">Satellite</string>
+    <string name="map_type_terrain">Terrain</string>
 </resources>
