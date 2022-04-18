@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
 import com.mankart.mankgram.ui.mapviewstory.MapType
 import com.mankart.mankgram.utils.ApiInterceptor
 import com.mankart.mankgram.utils.AppExecutors
@@ -41,6 +42,9 @@ class UserRepository(
 
     fun getMapType() : LiveData<MapType> = pref.getMapType().asLiveData()
     suspend fun saveMapType(value: MapType) = pref.saveMapType(value)
+
+    fun getMapStyle() : LiveData<MapStyle> = pref.getMapStyle().asLiveData()
+    suspend fun saveMapStyle(value: MapStyle) = pref.saveMapStyle(value)
 
     suspend fun clearCache() = pref.clearCache()
 

@@ -36,16 +36,36 @@ class MapOptionFragment : BottomSheetDialogFragment() {
 
         onClickListener()
         initObserver()
+        hideMapStyleGroup()
     }
 
     private fun initObserver() {
         mapViewStoryViewModel.getMapType().observe(viewLifecycleOwner) {
             when (it) {
-                MapType.NORMAL -> highlightMapTypeSwitcher(MapType.NORMAL)
+                MapType.NORMAL -> {
+                    highlightMapTypeSwitcher(MapType.NORMAL)
+                    hideMapStyleGroup(false)
+                }
                 MapType.SATELLITE -> highlightMapTypeSwitcher(MapType.SATELLITE)
                 MapType.TERRAIN -> highlightMapTypeSwitcher(MapType.TERRAIN)
                 else -> highlightMapTypeSwitcher(MapType.NORMAL)
             }
+        }
+        mapViewStoryViewModel.getMapStyle().observe(viewLifecycleOwner) {
+            when (it) {
+                MapStyle.NORMAL -> highlightMapStyleSwitcher(MapStyle.NORMAL)
+                MapStyle.NIGHT -> highlightMapStyleSwitcher(MapStyle.NIGHT)
+                MapStyle.SILVER -> highlightMapStyleSwitcher(MapStyle.SILVER)
+                else -> highlightMapStyleSwitcher(MapStyle.NORMAL)
+            }
+        }
+    }
+
+    private fun hideMapStyleGroup(isHide: Boolean = true) {
+        if (isHide) {
+            binding.mapStyleGroup.visibility = View.GONE
+        } else {
+            binding.mapStyleGroup.visibility = View.VISIBLE
         }
     }
 
@@ -54,6 +74,7 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
+        // Map Type
         binding.cvMapDefault.setOnClickListener {
             mapViewStoryViewModel.saveMapType(MapType.NORMAL)
             Toast.makeText(context, getString(R.string.map_type_normal), Toast.LENGTH_SHORT).show()
@@ -72,22 +93,23 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
+        // Map Style
         binding.cvMapStyleDefault.setOnClickListener {
-            highlightMapStyleSwitcher(MapStyle.NORMAL)
-            Toast.makeText(context, "Default", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapStyle(MapStyle.NORMAL)
+            Toast.makeText(context, getString(R.string.map_style_normal), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
 
         binding.cvMapStyleNight.setOnClickListener {
-            highlightMapStyleSwitcher(MapStyle.NIGHT)
-            Toast.makeText(context, "Night", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapStyle(MapStyle.NIGHT)
+            Toast.makeText(context, getString(R.string.map_style_night), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
 
         binding.cvMapStyleSilver.setOnClickListener {
-            highlightMapStyleSwitcher(MapStyle.SILVER)
-            Toast.makeText(context, "Silver", Toast.LENGTH_SHORT).show()
-//            dismiss()
+            mapViewStoryViewModel.saveMapStyle(MapStyle.SILVER)
+            Toast.makeText(context, getString(R.string.map_style_silver), Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 

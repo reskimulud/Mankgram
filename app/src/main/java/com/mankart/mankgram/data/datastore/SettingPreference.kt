@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
 import com.mankart.mankgram.ui.mapviewstory.MapType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -17,6 +18,7 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     private val USER_NAME_KEY = stringPreferencesKey("user_name")
     private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
     private val MAP_TYPE_KEY = stringPreferencesKey("map_type")
+    private val MAP_STYLE_KEY = stringPreferencesKey("map_style")
 
     /**
      * Dark Mode
@@ -29,6 +31,11 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveThemeMode(themeMode: Boolean) {
         dataStore.edit {
             it[THEME_MODE_KEY] = themeMode
+            if (themeMode) {
+                it[MAP_STYLE_KEY] = MapStyle.NIGHT.name
+            } else {
+                it[MAP_STYLE_KEY] = MapStyle.NORMAL.name
+            }
         }
     }
 
@@ -108,7 +115,29 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
                 MapType.NORMAL -> MapType.NORMAL.name
                 MapType.SATELLITE -> MapType.SATELLITE.name
                 MapType.TERRAIN -> MapType.TERRAIN.name
-                else -> MapType.NORMAL.name
+            }
+        }
+    }
+
+    /**
+     * Map Style
+     */
+
+    fun getMapStyle(): Flow<MapStyle> = dataStore.data.map {
+        when (it[MAP_STYLE_KEY]) {
+            MapStyle.NORMAL.name -> MapStyle.NORMAL
+            MapStyle.NIGHT.name -> MapStyle.NIGHT
+            MapStyle.SILVER.name -> MapStyle.SILVER
+            else -> MapStyle.NORMAL
+        }
+    }
+
+    suspend fun saveMapStyle(mapStyle: MapStyle) {
+        dataStore.edit {
+            it[MAP_STYLE_KEY] = when (mapStyle) {
+                MapStyle.NORMAL -> MapStyle.NORMAL.name
+                MapStyle.NIGHT -> MapStyle.NIGHT.name
+                MapStyle.SILVER -> MapStyle.SILVER.name
             }
         }
     }

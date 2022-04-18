@@ -14,4 +14,12 @@ class MapViewStoryViewModel(private val userRepository: UserRepository): ViewMod
             userRepository.saveMapType(mapType)
         }
     }
+
+    fun getMapStyle() : LiveData<MapStyle> = userRepository.getMapStyle()
+
+    fun saveMapStyle(mapStyle: MapStyle) {
+        viewModelScope.launch {
+            userRepository.saveMapStyle(mapStyle)
+        }
+    }
 }

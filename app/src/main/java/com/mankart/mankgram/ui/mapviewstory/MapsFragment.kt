@@ -59,6 +59,15 @@ class MapsFragment : Fragment() {
             }
         }
 
+        mapViewStoryViewModel.getMapStyle().observe(viewLifecycleOwner) {
+            when (it) {
+                MapStyle.NORMAL -> setMapStyle(googleMap, MapStyle.NORMAL)
+                MapStyle.NIGHT -> setMapStyle(googleMap, MapStyle.NIGHT)
+                MapStyle.SILVER -> setMapStyle(googleMap, MapStyle.SILVER)
+                else -> setMapStyle(googleMap, MapStyle.NORMAL)
+            }
+        }
+
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
@@ -104,6 +113,21 @@ class MapsFragment : Fragment() {
             MapType.TERRAIN -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
             }
+        }
+    }
+
+    private fun setMapStyle(mMap: GoogleMap, mapStyle: MapStyle) {
+        try {
+            val success = when (mapStyle) {
+                MapStyle.NORMAL -> mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireActivity(), R.raw.map_style_normal))
+                MapStyle.NIGHT -> mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireActivity(), R.raw.map_style_night))
+                MapStyle.SILVER -> mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireActivity(), R.raw.map_style_silver))
+            }
+            if (!success) {
+                Log.e("MapsFragment", "Style parsing failed.")
+            }
+        } catch (e: Resources.NotFoundException) {
+            Log.e("MapsFragment", "Can't find style. Error: ", e)
         }
     }
 
