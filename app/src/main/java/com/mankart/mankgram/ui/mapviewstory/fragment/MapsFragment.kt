@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 
@@ -53,6 +54,21 @@ class MapsFragment : Fragment() {
         googleMap.uiSettings.isMapToolbarEnabled = true
         googleMap.uiSettings.isIndoorLevelPickerEnabled = true
 
+        mapViewStoryViewModel.userStories.observe(viewLifecycleOwner) {
+            Log.e("MapsFragment", "userStories: $it")
+            it?.let {
+                for (story in it) {
+                    val lat: Double = story.lat!!
+                    val lon: Double = story.lon!!
+
+                    val latLng = LatLng(lat, lon)
+                    googleMap.addMarker(MarkerOptions().position(latLng).title(story.name))
+                }
+                val latLng = LatLng(it[0].lat!!, it[0].lon!!)
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
+            }
+        }
+
         mapViewStoryViewModel.getMapType().observe(viewLifecycleOwner) {
             when (it) {
                 MapType.NORMAL -> setMapType(googleMap, MapType.NORMAL)
@@ -70,13 +86,9 @@ class MapsFragment : Fragment() {
                 else -> setMapStyle(googleMap, MapStyle.NORMAL)
             }
         }
-
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -103,6 +115,18 @@ class MapsFragment : Fragment() {
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
+        fetchUserStories()
+        mapViewStoryViewModel.message.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun fetchUserStories() {
+        mapViewStoryViewModel.getUserToken().observe(viewLifecycleOwner) {
+            mapViewStoryViewModel.getUserStoriesWithLocation(it)
+            Log.e("MapView", "Token: $it")
+        }
     }
 
     private fun setMapType(mMap: GoogleMap, mapType: MapType) {

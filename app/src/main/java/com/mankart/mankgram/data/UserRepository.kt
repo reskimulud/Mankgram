@@ -71,7 +71,7 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
-    fun getUserStories(token: String): Call<UserResponse> {
+    fun getUserStories(token: String, location: Int = 0): Call<UserResponse> {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -81,7 +81,7 @@ class UserRepository(
             .client(client)
             .build()
         val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.getUserStories()
+        return mApiService.getUserStories(location)
     }
 
     fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String): Call<UserResponse> {
