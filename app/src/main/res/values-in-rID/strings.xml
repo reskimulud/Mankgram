@@ -44,4 +44,6 @@
     <string name="cd_preview">Pratampil gambar hasil tangkapan kamera atau dari galeri</string>
     <string name="start">Mulai</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
+    <string name="title_activity_map_view_story">MapViewStoryActivity</string>
+    <string name="map_view">Map View</string>
 </resources>

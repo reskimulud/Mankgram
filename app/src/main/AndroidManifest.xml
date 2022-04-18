@@ -15,10 +15,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankgram">
+
+        <!-- set API key on build.gradle(:app) -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
         <activity
-            android:theme="@style/Theme.OnBoardingStyle"
+            android:name=".ui.mapviewstory.MapViewStoryActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.mainmenu.MainActivity"
+            android:label="@string/title_activity_map_view_story" />
+        <activity
             android:name=".ui.OnBoardingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.OnBoardingStyle" />
         <activity
             android:name=".ui.mainmenu.newstory.CameraActivity"
             android:exported="false" />

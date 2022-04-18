@@ -44,4 +44,6 @@
     <string name="cd_preview">Vista previa de la imagen capturada por la cámara o desde la galería</string>
     <string name="start">Comienzo</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
+    <string name="title_activity_map_view_story">MapViewStoryActivity</string>
+    <string name="map_view">Map View</string>
 </resources>
