@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders += [MAPS_API_KEY:"your_api_key"]
+        manifestPlaceholders += [MAPS_API_KEY:"AIzaSyAh7T6PXTT_lOmhxW4Ip0jNDPoy1gVCdPA"]
     }
 
     buildTypes {

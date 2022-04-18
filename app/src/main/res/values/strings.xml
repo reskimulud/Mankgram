@@ -45,4 +45,5 @@
     <string name="swift"><![CDATA[Swipe >>]]></string>
     <string name="title_activity_map_view_story">MapViewStoryActivity</string>
     <string name="map_view">Map View</string>
+    <string name="map_style">Map Style</string>
 </resources>

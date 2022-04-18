@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_option_navigation"
+    app:startDestination="@id/mapsFragment">
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_mapOptionFragment"
+            app:destination="@id/mapOptionFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/mapOptionFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.MapOptionFragment"
+        android:label="fragment_map_option"
+        tools:layout="@layout/fragment_map_option" />
+</navigation>

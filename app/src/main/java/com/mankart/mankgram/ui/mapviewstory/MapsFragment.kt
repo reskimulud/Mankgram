@@ -1,0 +1,84 @@
+package com.mankart.mankgram.ui.mapviewstory
+
+import android.content.Intent
+import androidx.fragment.app.Fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.mankart.mankgram.R
+import com.mankart.mankgram.databinding.FragmentMapsBinding
+import com.mankart.mankgram.ui.mainmenu.MainActivity
+
+class MapsFragment : Fragment() {
+    private var _binding: FragmentMapsBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    private val callback = OnMapReadyCallback { googleMap ->
+        /**
+         * Manipulates the map once available.
+         * This callback is triggered when the map is ready to be used.
+         * This is where we can add markers or lines, add listeners or move the camera.
+         * In this case, we just add a marker near Sydney, Australia.
+         * If Google Play services is not installed on the device, the user will be prompted to
+         * install it inside the SupportMapFragment. This method will only be triggered once the
+         * user has installed Google Play services and returned to the app.
+         */
+
+        googleMap.setPadding(0, 160, 0, 0)
+        googleMap.uiSettings.isCompassEnabled = true
+        googleMap.uiSettings.isZoomControlsEnabled = true
+        googleMap.uiSettings.isMapToolbarEnabled = true
+        googleMap.uiSettings.isIndoorLevelPickerEnabled = true
+
+        val sydney = LatLng(-34.0, 151.0)
+        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentMapsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.backArrow.setOnClickListener {
+            startActivity(Intent(activity, MainActivity::class.java))
+            activity?.finish()
+        }
+
+        binding.toolbar.inflateMenu(R.menu.map_style_option)
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.map_style_option -> {
+                    findNavController().navigate(R.id.action_mapsFragment_to_mapOptionFragment)
+                }
+            }
+            true
+        }
+
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        OnMapReadyCallback {
+            it.clear()
+        }
+    }
+}
