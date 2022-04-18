@@ -1,4 +1,4 @@
-package com.mankart.mankgram.ui.mapviewstory
+package com.mankart.mankgram.ui.mapviewstory.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentMapOptionBinding
 import com.mankart.mankgram.ui.ViewModelFactory
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
+import com.mankart.mankgram.ui.mapviewstory.MapType
+import com.mankart.mankgram.ui.mapviewstory.MapViewStoryViewModel
 
 class MapOptionFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentMapOptionBinding? = null

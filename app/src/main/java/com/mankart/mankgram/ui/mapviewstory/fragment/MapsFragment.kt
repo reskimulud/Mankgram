@@ -1,4 +1,4 @@
-package com.mankart.mankgram.ui.mapviewstory
+package com.mankart.mankgram.ui.mapviewstory.fragment
 
 import android.content.Intent
 import android.content.res.Resources
@@ -23,6 +23,9 @@ import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentMapsBinding
 import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.ui.mainmenu.MainActivity
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
+import com.mankart.mankgram.ui.mapviewstory.MapType
+import com.mankart.mankgram.ui.mapviewstory.MapViewStoryViewModel
 
 class MapsFragment : Fragment() {
     private var _binding: FragmentMapsBinding? = null

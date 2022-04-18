@@ -6,7 +6,7 @@
     app:startDestination="@id/mapsFragment">
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.mankart.mankgram.ui.mapviewstory.MapsFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.fragment.MapsFragment"
         android:label="MapsFragment" >
         <action
             android:id="@+id/action_mapsFragment_to_mapOptionFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <dialog
         android:id="@+id/mapOptionFragment"
-        android:name="com.mankart.mankgram.ui.mapviewstory.MapOptionFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.fragment.MapOptionFragment"
         android:label="fragment_map_option"
         tools:layout="@layout/fragment_map_option" />
 </navigation>

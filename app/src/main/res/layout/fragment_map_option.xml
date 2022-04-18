@@ -7,7 +7,7 @@
     android:background="@color/colorBase"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".ui.mapviewstory.MapOptionFragment">
+    tools:context=".ui.mapviewstory.fragment.MapOptionFragment">
 
     <View
         android:id="@+id/view_top"
