@@ -86,6 +86,21 @@ class MapsFragment : Fragment() {
                 else -> setMapStyle(googleMap, MapStyle.NORMAL)
             }
         }
+
+        googleMap.setOnMarkerClickListener { marker ->
+            val story = mapViewStoryViewModel.userStories.value?.find { it.name == marker.title }
+            story?.let {
+                val latLog = LatLng(it.lat!!, it.lon!!)
+                val toDialogDetailStoryFragment = MapsFragmentDirections.actionMapsFragmentToDialogDetailStoryFragment(
+                    it.name,
+                    it.description,
+                    it.image
+                )
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLog, 10f))
+                findNavController().navigate(toDialogDetailStoryFragment)
+            }
+            true
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
