@@ -44,14 +44,14 @@
     <string name="cd_preview">Vista previa de la imagen capturada por la cámara o desde la galería</string>
     <string name="start">Comienzo</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
-    <string name="title_activity_map_view_story">MapViewStoryActivity</string>
-    <string name="map_view">Map View</string>
-    <string name="map_style">Map Style</string>
-    <string name="map_type">Map Type</string>
+    <string name="title_activity_map_view_story">Historias de Vista de Mapa</string>
+    <string name="map_view">Vista del Mapa</string>
+    <string name="map_style">Estilo de Mapa</string>
+    <string name="map_type">Tipo de Mapa</string>
     <string name="map_type_normal">Normal</string>
-    <string name="map_type_satellite">Satellite</string>
-    <string name="map_type_terrain">Terrain</string>
+    <string name="map_type_satellite">Satélite</string>
+    <string name="map_type_terrain">Terreno</string>
     <string name="map_style_normal">Normal</string>
-    <string name="map_style_silver">Silver</string>
-    <string name="map_style_night">Night</string>
+    <string name="map_style_silver">Plata</string>
+    <string name="map_style_night">Noche</string>
 </resources>

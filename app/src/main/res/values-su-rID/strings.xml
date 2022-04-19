@@ -44,14 +44,14 @@
     <string name="start">Ngawitan</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
     <string name="detail">Salengkapna</string>
-    <string name="title_activity_map_view_story">MapViewStoryActivity</string>
-    <string name="map_view">Map View</string>
-    <string name="map_style">Map Style</string>
-    <string name="map_type">Map Type</string>
+    <string name="title_activity_map_view_story">Carita Témbongkeun Peta</string>
+    <string name="map_view">Témbongkeun Peta</string>
+    <string name="map_style">Gaya Peta</string>
+    <string name="map_type">Tipe Peta</string>
     <string name="map_type_normal">Normal</string>
-    <string name="map_type_satellite">Satellite</string>
-    <string name="map_type_terrain">Terrain</string>
+    <string name="map_type_satellite">Satelit</string>
+    <string name="map_type_terrain">Rupa Bumi</string>
     <string name="map_style_normal">Normal</string>
-    <string name="map_style_silver">Silver</string>
-    <string name="map_style_night">Night</string>
+    <string name="map_style_silver">Abu-abu</string>
+    <string name="map_style_night">Wengi</string>
 </resources>
