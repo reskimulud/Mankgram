@@ -16,5 +16,11 @@ data class StoryModel(
     val image: String? = null,
 
     @field:SerializedName("description")
-    val description: String? = null
+    val description: String? = null,
+
+    @field:SerializedName("lat")
+    val lat: Double? = null,
+
+    @field:SerializedName("lon")
+    val lon: Double? = null,
 ) : Parcelable

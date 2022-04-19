@@ -1,6 +1,7 @@
 package com.mankart.mankgram.ui.mainmenu.newstory
 
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,9 +24,19 @@ class NewStoryViewModel(private val userRepository: UserRepository): ViewModel()
     private var _loading = MutableLiveData<Event<Boolean>>()
     val loading: LiveData<Event<Boolean>> = _loading
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String) {
+    var myLocation = MutableLiveData<Location?>()
+
+    init {
+        myLocation.value = null
+    }
+
+    fun saveMyLocation(location: Location?) {
+        myLocation.value = location
+    }
+
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String, lat: Float? = null, lon: Float? = null) {
         _loading.value = Event(true)
-        val client = userRepository.uploadStory(photo, description, token)
+        val client = userRepository.uploadStory(photo, description, token, lat, lon)
         client.enqueue(object: Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 userRepository.appExecutors.networkIO.execute {

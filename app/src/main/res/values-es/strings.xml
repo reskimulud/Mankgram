@@ -19,7 +19,7 @@
     <string name="cd_story_image">Foto de historia compartida por %1$s</string>
     <string name="detail">Detalle</string>
     <string name="close">Cerrar</string>
-    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
     <string name="set_language">Elegir lenguaje</string>
     <string name="dark_mode">Modo oscuro</string>
     <string name="logout">Cerrar sesión</string>
@@ -44,4 +44,15 @@
     <string name="cd_preview">Vista previa de la imagen capturada por la cámara o desde la galería</string>
     <string name="start">Comienzo</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
+    <string name="title_activity_map_view_story">Historias de Vista de Mapa</string>
+    <string name="map_view">Vista del Mapa</string>
+    <string name="map_style">Estilo de Mapa</string>
+    <string name="map_type">Tipo de Mapa</string>
+    <string name="map_type_normal">Normal</string>
+    <string name="map_type_satellite">Satélite</string>
+    <string name="map_type_terrain">Terreno</string>
+    <string name="map_style_normal">Normal</string>
+    <string name="map_style_silver">Plata</string>
+    <string name="map_style_night">Noche</string>
+    <string name="cb_share_location">Share my location?</string>
 </resources>

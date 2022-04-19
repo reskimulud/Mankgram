@@ -23,6 +23,9 @@
         <item name="android:windowActivityTransitions">true</item>-->
         <item name="android:windowEnterTransition">@android:transition/explode</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>
+
+        <!-- Font -->
+        <item name="android:fontFamily">@font/googlesans_regular</item>
     </style>
 
     <!-- App Bar style -->

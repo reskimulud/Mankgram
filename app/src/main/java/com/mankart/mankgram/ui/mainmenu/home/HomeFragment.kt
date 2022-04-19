@@ -1,17 +1,18 @@
 package com.mankart.mankgram.ui.mainmenu.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mankart.mankgram.R
 import com.mankart.mankgram.ui.adapter.ListStoryAdapter
 import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentHomeBinding
+import com.mankart.mankgram.ui.mapviewstory.MapViewStoryActivity
 
 class HomeFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
@@ -35,6 +36,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.homeToolbar.inflateMenu(R.menu.map_view_option)
+
+        binding.homeToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.map_view -> {
+                    startActivity(Intent(activity, MapViewStoryActivity::class.java))
+                }
+            }
+            true
+        }
 
         factory = ViewModelFactory.getInstance(requireActivity())
 

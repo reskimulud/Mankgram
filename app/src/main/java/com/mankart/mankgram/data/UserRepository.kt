@@ -5,6 +5,8 @@ import androidx.lifecycle.asLiveData
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
+import com.mankart.mankgram.ui.mapviewstory.MapType
 import com.mankart.mankgram.utils.ApiInterceptor
 import com.mankart.mankgram.utils.AppExecutors
 import okhttp3.MultipartBody
@@ -38,6 +40,12 @@ class UserRepository(
     fun getIsFirstTime() : LiveData<Boolean> = pref.isFirstTime().asLiveData()
     suspend fun saveIsFirstTime(value: Boolean) = pref.saveIsFirstTime(value)
 
+    fun getMapType() : LiveData<MapType> = pref.getMapType().asLiveData()
+    suspend fun saveMapType(value: MapType) = pref.saveMapType(value)
+
+    fun getMapStyle() : LiveData<MapStyle> = pref.getMapStyle().asLiveData()
+    suspend fun saveMapStyle(value: MapStyle) = pref.saveMapStyle(value)
+
     suspend fun clearCache() = pref.clearCache()
 
     /**
@@ -63,7 +71,7 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
-    fun getUserStories(token: String): Call<UserResponse> {
+    fun getUserStories(token: String, location: Int = 0): Call<UserResponse> {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -73,10 +81,10 @@ class UserRepository(
             .client(client)
             .build()
         val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.getUserStories()
+        return mApiService.getUserStories(location)
     }
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String): Call<UserResponse> {
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String, lat: Float? = null, lon: Float? = null): Call<UserResponse> {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -86,7 +94,7 @@ class UserRepository(
             .client(client)
             .build()
         val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.postUserStory(photo, description)
+        return mApiService.postUserStory(photo, description, lat, lon)
     }
 
     companion object {

@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
+import com.mankart.mankgram.ui.mapviewstory.MapType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -15,6 +17,8 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
     private val USER_NAME_KEY = stringPreferencesKey("user_name")
     private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
+    private val MAP_TYPE_KEY = stringPreferencesKey("map_type")
+    private val MAP_STYLE_KEY = stringPreferencesKey("map_style")
 
     /**
      * Dark Mode
@@ -27,6 +31,11 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveThemeMode(themeMode: Boolean) {
         dataStore.edit {
             it[THEME_MODE_KEY] = themeMode
+            if (themeMode) {
+                it[MAP_STYLE_KEY] = MapStyle.NIGHT.name
+            } else {
+                it[MAP_STYLE_KEY] = MapStyle.NORMAL.name
+            }
         }
     }
 
@@ -84,6 +93,52 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     suspend fun saveIsFirstTime(firstTime: Boolean) {
         dataStore.edit {
             it[FIRST_TIME_KEY] = firstTime
+        }
+    }
+
+    /**
+     * Map Type
+     */
+
+    fun getMapType(): Flow<MapType> = dataStore.data.map {
+        when (it[MAP_TYPE_KEY]) {
+            MapType.NORMAL.name -> MapType.NORMAL
+            MapType.SATELLITE.name -> MapType.SATELLITE
+            MapType.TERRAIN.name -> MapType.TERRAIN
+            else -> MapType.NORMAL
+        }
+    }
+
+    suspend fun saveMapType(mapType: MapType) {
+        dataStore.edit {
+            it[MAP_TYPE_KEY] = when (mapType) {
+                MapType.NORMAL -> MapType.NORMAL.name
+                MapType.SATELLITE -> MapType.SATELLITE.name
+                MapType.TERRAIN -> MapType.TERRAIN.name
+            }
+        }
+    }
+
+    /**
+     * Map Style
+     */
+
+    fun getMapStyle(): Flow<MapStyle> = dataStore.data.map {
+        when (it[MAP_STYLE_KEY]) {
+            MapStyle.NORMAL.name -> MapStyle.NORMAL
+            MapStyle.NIGHT.name -> MapStyle.NIGHT
+            MapStyle.SILVER.name -> MapStyle.SILVER
+            else -> MapStyle.NORMAL
+        }
+    }
+
+    suspend fun saveMapStyle(mapStyle: MapStyle) {
+        dataStore.edit {
+            it[MAP_STYLE_KEY] = when (mapStyle) {
+                MapStyle.NORMAL -> MapStyle.NORMAL.name
+                MapStyle.NIGHT -> MapStyle.NIGHT.name
+                MapStyle.SILVER -> MapStyle.SILVER.name
+            }
         }
     }
 
