@@ -1,6 +1,9 @@
 package com.mankart.mankgram.ui.mapviewstory.fragment
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
 
@@ -10,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 
@@ -32,11 +37,22 @@ class MapsFragment : Fragment() {
     private var _binding: FragmentMapsBinding? = null
     private lateinit var factory: ViewModelFactory
     private val mapViewStoryViewModel: MapViewStoryViewModel by activityViewModels { factory }
+    private var isLocationPermissionGranted = false
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
+
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -53,6 +69,8 @@ class MapsFragment : Fragment() {
         googleMap.uiSettings.isZoomControlsEnabled = true
         googleMap.uiSettings.isMapToolbarEnabled = true
         googleMap.uiSettings.isIndoorLevelPickerEnabled = true
+
+        googleMap.isMyLocationEnabled = isLocationPermissionGranted
 
         mapViewStoryViewModel.userStories.observe(viewLifecycleOwner) {
             Log.e("MapsFragment", "userStories: $it")
@@ -103,6 +121,16 @@ class MapsFragment : Fragment() {
         }
     }
 
+    private fun getMyLocation() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            isLocationPermissionGranted = true
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
         return binding.root
@@ -112,6 +140,7 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         factory = ViewModelFactory.getInstance(requireActivity())
+        getMyLocation()
 
         binding.backArrow.setOnClickListener {
             startActivity(Intent(activity, MainActivity::class.java))
