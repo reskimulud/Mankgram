@@ -62,7 +62,7 @@ class MapsFragment : Fragment() {
                     val lon: Double = story.lon!!
 
                     val latLng = LatLng(lat, lon)
-                    googleMap.addMarker(MarkerOptions().position(latLng).title(story.name))
+                    googleMap.addMarker(MarkerOptions().position(latLng).title(story.name))?.tag = story.id
                 }
                 val latLng = LatLng(it[0].lat!!, it[0].lon!!)
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
@@ -88,7 +88,7 @@ class MapsFragment : Fragment() {
         }
 
         googleMap.setOnMarkerClickListener { marker ->
-            val story = mapViewStoryViewModel.userStories.value?.find { it.name == marker.title }
+            val story = mapViewStoryViewModel.userStories.value?.find { it.id == marker.tag }
             story?.let {
                 val latLog = LatLng(it.lat!!, it.lon!!)
                 val toDialogDetailStoryFragment = MapsFragmentDirections.actionMapsFragmentToDialogDetailStoryFragment(
