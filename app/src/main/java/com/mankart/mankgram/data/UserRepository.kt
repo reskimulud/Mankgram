@@ -84,7 +84,7 @@ class UserRepository(
         return mApiService.getUserStories(location)
     }
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String): Call<UserResponse> {
+    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String, lat: Float? = null, lon: Float? = null): Call<UserResponse> {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -94,7 +94,7 @@ class UserRepository(
             .client(client)
             .build()
         val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.postUserStory(photo, description)
+        return mApiService.postUserStory(photo, description, lat, lon)
     }
 
     companion object {

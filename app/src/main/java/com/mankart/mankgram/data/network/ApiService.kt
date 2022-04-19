@@ -26,6 +26,8 @@ interface ApiService {
     @POST("stories")
     fun postUserStory(
         @Part photo : MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: Float? = null,
+        @Part("lon") lon: Float? = null,
     ) : Call<UserResponse>
 }

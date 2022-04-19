@@ -13,6 +13,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MapViewStoryViewModel(private val userRepository: UserRepository): ViewModel() {
+    var myLocationPermission = MutableLiveData<Boolean>()
+
+    fun setMyLocationPermission(value: Boolean) {
+        myLocationPermission.value = value
+    }
+
     fun getMapType() : LiveData<MapType> = userRepository.getMapType()
 
     fun saveMapType(mapType: MapType) {
