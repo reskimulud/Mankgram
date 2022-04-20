@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mankart.mankgram.R
@@ -115,47 +116,54 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             dismiss()
         }
     }
+    
+    private fun changeColor(name: String): Int {
+        return when (name) {
+            ACCENT_COLOR -> ContextCompat.getColor(requireContext(), R.color.colorAccent)
+            else -> ContextCompat.getColor(requireContext(), R.color.colorTextSecondary)
+        }
+    }
 
     private fun highlightMapTypeSwitcher(type: MapType) {
         when (type) {
             MapType.NORMAL -> {
                 // Normal
                 binding.ivMapDefault.setPadding(1, 1, 1, 1)
-                binding.tvMapDefault.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapDefault.setTextColor(changeColor(ACCENT_COLOR))
 
                 // Satellite
                 binding.ivMapSatellite.setPadding(0, 0, 0, 0)
-                binding.tvMapSatellite.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapSatellite.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Terrain
                 binding.ivMapTerrain.setPadding(0, 0, 0, 0)
-                binding.tvMapTerrain.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapTerrain.setTextColor(changeColor(SECONDARY_COLOR))
             }
             MapType.SATELLITE -> {
                 // Normal
                 binding.ivMapDefault.setPadding(0, 0, 0, 0)
-                binding.tvMapDefault.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapDefault.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Satellite
                 binding.ivMapSatellite.setPadding(1, 1, 1, 1)
-                binding.tvMapSatellite.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapSatellite.setTextColor(changeColor(ACCENT_COLOR))
 
                 // Terrain
                 binding.ivMapTerrain.setPadding(0, 0, 0, 0)
-                binding.tvMapTerrain.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapTerrain.setTextColor(changeColor(SECONDARY_COLOR))
             }
             MapType.TERRAIN -> {
                 // Normal
                 binding.ivMapDefault.setPadding(0, 0, 0, 0)
-                binding.tvMapDefault.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapDefault.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Satellite
                 binding.ivMapSatellite.setPadding(0, 0, 0, 0)
-                binding.tvMapSatellite.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapSatellite.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Terrain
                 binding.ivMapTerrain.setPadding(1, 1, 1, 1)
-                binding.tvMapTerrain.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapTerrain.setTextColor(changeColor(ACCENT_COLOR))
             }
         }
     }
@@ -165,42 +173,48 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             MapStyle.NORMAL -> {
                 // Normal
                 binding.ivMapStyleDefault.setPadding(1, 1, 1, 1)
-                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapStyleNormal.setTextColor(changeColor(ACCENT_COLOR))
 
                 // Night
                 binding.ivMapStyleNight.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleNight.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Silver
                 binding.ivMapStyleSilver.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleSilver.setTextColor(changeColor(SECONDARY_COLOR))
             }
             MapStyle.NIGHT -> {
                 // Normal
                 binding.ivMapStyleDefault.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleNormal.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Night
                 binding.ivMapStyleNight.setPadding(1, 1, 1, 1)
-                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapStyleNight.setTextColor(changeColor(ACCENT_COLOR))
 
                 // Silver
                 binding.ivMapStyleSilver.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleSilver.setTextColor(changeColor(SECONDARY_COLOR))
             }
             MapStyle.SILVER -> {
                 // Normal
                 binding.ivMapStyleDefault.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleNormal.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleNormal.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Night
                 binding.ivMapStyleNight.setPadding(0, 0, 0, 0)
-                binding.tvMapStyleNight.setTextColor(resources.getColor(R.color.colorTextSecondary))
+                binding.tvMapStyleNight.setTextColor(changeColor(SECONDARY_COLOR))
 
                 // Terrain
                 binding.ivMapStyleSilver.setPadding(1, 1, 1, 1)
-                binding.tvMapStyleSilver.setTextColor(resources.getColor(R.color.colorAccent))
+                binding.tvMapStyleSilver.setTextColor(changeColor(ACCENT_COLOR))
             }
         }
     }
+    
+    companion object {
+        private const val ACCENT_COLOR = "ACCENT_COLOR"
+        private const val SECONDARY_COLOR = "SECONDARY_COLOR"
+    }
+    
 }
