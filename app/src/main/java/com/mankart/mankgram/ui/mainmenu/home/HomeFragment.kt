@@ -55,13 +55,13 @@ class HomeFragment : Fragment() {
         fetchUserStories()
 
         initObserve()
-        initRecycler()
     }
 
     private fun fetchUserStories() {
         homeViewModel.getUserToken().observe(viewLifecycleOwner) {
             binding.refreshLayout.isRefreshing = true
             homeViewModel.getUserStories(it)
+            initRecycler()
             Log.e("Home", "Token: $it")
         }
     }
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
         listStoryAdapter = ListStoryAdapter()
         homeViewModel.userStories.observe(viewLifecycleOwner) {
             binding.refreshLayout.isRefreshing = false
-            listStoryAdapter.setData(it)
+            listStoryAdapter.submitData(lifecycle, it)
         }
         binding.rvStory.adapter = listStoryAdapter
     }

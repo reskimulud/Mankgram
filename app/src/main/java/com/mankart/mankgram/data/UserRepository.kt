@@ -1,10 +1,17 @@
 package com.mankart.mankgram.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.data.paging.StoryPagingSource
+import com.mankart.mankgram.model.StoryModel
 import com.mankart.mankgram.ui.mapviewstory.MapStyle
 import com.mankart.mankgram.ui.mapviewstory.MapType
 import com.mankart.mankgram.utils.ApiInterceptor
@@ -71,7 +78,7 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
-    fun getUserStories(token: String, location: Int = 0): Call<UserResponse> {
+    private fun userStories(token: String): ApiService {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -80,22 +87,30 @@ class UserRepository(
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.getUserStories(location)
+        return retrofit.create(ApiService::class.java)
     }
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String, lat: Float? = null, lon: Float? = null): Call<UserResponse> {
-        val client = OkHttpClient.Builder()
-            .addInterceptor(ApiInterceptor(token))
-            .build()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://story-api.dicoding.dev/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-        val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.postUserStory(photo, description, lat, lon)
+    fun getUserStoryMapView(token: String) : Call<UserResponse> {
+        return userStories(token).getUserStories(1)
     }
+
+    fun getUserStoryList(token: String, location: Int = 0) : LiveData<PagingData<StoryModel>> {
+        Log.e("getUserStoryList", "run getUserStoryList")
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { StoryPagingSource(userStories(token), location) }
+        ).liveData
+    }
+
+    fun uploadStory(
+        photo: MultipartBody.Part,
+        description: RequestBody,
+        token: String,
+        lat: Float? = null,
+        lon: Float? = null): Call<UserResponse> = userStories(token).postUserStory(photo, description, lat, lon)
 
     companion object {
         @Volatile

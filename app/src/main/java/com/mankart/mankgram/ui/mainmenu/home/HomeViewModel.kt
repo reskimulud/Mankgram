@@ -1,19 +1,18 @@
 package com.mankart.mankgram.ui.mainmenu.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.mankart.mankgram.model.StoryModel
 import com.mankart.mankgram.data.UserRepository
-import com.mankart.mankgram.data.network.UserResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    private var _userStories = MutableLiveData<ArrayList<StoryModel>>()
-    val userStories: LiveData<ArrayList<StoryModel>> = _userStories
+    lateinit var userStories: LiveData<PagingData<StoryModel>>
 
     private var _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
@@ -25,21 +24,7 @@ class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     fun getUserStories(token: String) {
-        val client = userRepository.getUserStories(token)
-        client.enqueue(object : Callback<UserResponse>{
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful) {
-                    val userResponse = response.body()?.listStory
-                    userRepository.appExecutors.networkIO.execute {
-                        _userStories.postValue(userResponse!!)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                _message.value = t.message
-            }
-        })
+        userStories = userRepository.getUserStoryList(token).cachedIn(viewModelScope)
+        Log.e("HomeViewModel", "getUserStories: " + userStories.value)
     }
-
 }

@@ -20,6 +20,8 @@ interface ApiService {
     @GET("stories")
     fun getUserStories(
         @Query("location") location: Int,
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null
     ) : Call<UserResponse>
 
     @Multipart
