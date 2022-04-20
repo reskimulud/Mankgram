@@ -54,7 +54,7 @@
     <string name="map_style_normal">Normal</string>
     <string name="map_style_silver">Plata</string>
     <string name="map_style_night">Noche</string>
-    <string name="cb_share_location">Share my location?</string>
-    <string name="retry">Retry</string>
-    <string name="failed_load_data">Failed to load data</string>
+    <string name="cb_share_location">¿Compartir mi ubicación?</string>
+    <string name="retry">Rever</string>
+    <string name="failed_load_data">Error al cargar datos</string>
 </resources>

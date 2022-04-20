@@ -54,7 +54,7 @@
     <string name="map_style_normal">Normal</string>
     <string name="map_style_silver">Abu-abu</string>
     <string name="map_style_night">Malam</string>
-    <string name="cb_share_location">Share my location?</string>
-    <string name="retry">Retry</string>
-    <string name="failed_load_data">Failed to load data</string>
+    <string name="cb_share_location">Berbagi lokasi?</string>
+    <string name="retry">Coba lagi</string>
+    <string name="failed_load_data">Gagal memuat data</string>
 </resources>
