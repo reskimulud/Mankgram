@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_option_navigation"
+    app:startDestination="@id/mapsFragment">
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.fragment.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_mapOptionFragment"
+            app:destination="@id/mapOptionFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_dialogDetailStoryFragment"
+            app:destination="@id/dialogDetailStoryFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/mapOptionFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.fragment.MapOptionFragment"
+        android:label="fragment_map_option"
+        tools:layout="@layout/fragment_map_option" />
+    <dialog
+        android:id="@+id/dialogDetailStoryFragment"
+        android:name="com.mankart.mankgram.ui.mapviewstory.fragment.DialogDetailStoryFragment"
+        android:label="fragment_dialog_detail_story"
+        tools:layout="@layout/fragment_dialog_detail_story" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="image"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+</navigation>

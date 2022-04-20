@@ -17,6 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            android:padding="8dp"
+            app:tint="@color/colorBase"/>
+
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
@@ -86,15 +94,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/upload_story"
+            app:layout_constraintBottom_toTopOf="@+id/cb_share_loc"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/btn_gallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:text="@string/gallery"
                 android:textColor="@color/colorBase"
@@ -104,12 +114,22 @@
                 android:id="@+id/btn_camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:text="@string/camera"
                 android:textColor="@color/colorBase"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_share_loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/cb_share_location"
+            app:layout_constraintBottom_toTopOf="@+id/upload_story"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
         <Button
             android:id="@+id/upload_story"

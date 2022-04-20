@@ -18,7 +18,7 @@
     <string name="tag_line">Tempat parantos ngalanggengkeun carita</string>
     <string name="cd_story_image">Gambar carita anu dibagiken ku %1$s</string>
     <string name="close">Tutup</string>
-    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
     <string name="set_language">Atur Basa</string>
     <string name="dark_mode">Mode poek</string>
     <string name="logout">Kaluar</string>
@@ -44,4 +44,17 @@
     <string name="start">Ngawitan</string>
     <string name="swift"><![CDATA[Swipe >>]]></string>
     <string name="detail">Salengkapna</string>
+    <string name="title_activity_map_view_story">Carita Témbongkeun Peta</string>
+    <string name="map_view">Témbongkeun Peta</string>
+    <string name="map_style">Gaya Peta</string>
+    <string name="map_type">Tipe Peta</string>
+    <string name="map_type_normal">Normal</string>
+    <string name="map_type_satellite">Satelit</string>
+    <string name="map_type_terrain">Rupa Bumi</string>
+    <string name="map_style_normal">Normal</string>
+    <string name="map_style_silver">Abu-abu</string>
+    <string name="map_style_night">Wengi</string>
+    <string name="cb_share_location">Bagikeun lokasi?</string>
+    <string name="retry">Coba deui</string>
+    <string name="failed_load_data">Gagal ngamuat data</string>
 </resources>

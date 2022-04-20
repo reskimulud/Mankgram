@@ -1,10 +1,17 @@
 package com.mankart.mankgram.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.paging.*
+import com.mankart.mankgram.data.database.UserStoryDatabase
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
+import com.mankart.mankgram.data.paging.StoryRemoteMediator
+import com.mankart.mankgram.model.StoryModel
+import com.mankart.mankgram.ui.mapviewstory.MapStyle
+import com.mankart.mankgram.ui.mapviewstory.MapType
 import com.mankart.mankgram.utils.ApiInterceptor
 import com.mankart.mankgram.utils.AppExecutors
 import okhttp3.MultipartBody
@@ -17,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class UserRepository(
     private val pref: SettingPreference,
     private val apiService: ApiService,
+    private val userStoryDatabase: UserStoryDatabase,
     val appExecutors: AppExecutors
 ) {
     /**
@@ -37,6 +45,12 @@ class UserRepository(
 
     fun getIsFirstTime() : LiveData<Boolean> = pref.isFirstTime().asLiveData()
     suspend fun saveIsFirstTime(value: Boolean) = pref.saveIsFirstTime(value)
+
+    fun getMapType() : LiveData<MapType> = pref.getMapType().asLiveData()
+    suspend fun saveMapType(value: MapType) = pref.saveMapType(value)
+
+    fun getMapStyle() : LiveData<MapStyle> = pref.getMapStyle().asLiveData()
+    suspend fun saveMapStyle(value: MapStyle) = pref.saveMapStyle(value)
 
     suspend fun clearCache() = pref.clearCache()
 
@@ -63,7 +77,7 @@ class UserRepository(
         return apiService.userRegister(user)
     }
 
-    fun getUserStories(token: String): Call<UserResponse> {
+    private fun userStories(token: String): ApiService {
         val client = OkHttpClient.Builder()
             .addInterceptor(ApiInterceptor(token))
             .build()
@@ -72,22 +86,35 @@ class UserRepository(
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.getUserStories()
+        return retrofit.create(ApiService::class.java)
     }
 
-    fun uploadStory(photo: MultipartBody.Part, description: RequestBody, token: String): Call<UserResponse> {
-        val client = OkHttpClient.Builder()
-            .addInterceptor(ApiInterceptor(token))
-            .build()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://story-api.dicoding.dev/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-        val mApiService = retrofit.create(ApiService::class.java)
-        return mApiService.postUserStory(photo, description)
+    fun getUserStoryMapView(token: String) : Call<UserResponse> {
+        return userStories(token).getUserStories(1)
     }
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun getUserStoryList(token: String) : LiveData<PagingData<StoryModel>> {
+        Log.e("getUserStoryList", "run getUserStoryList")
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            remoteMediator = StoryRemoteMediator(
+                userStoryDatabase,
+                apiService = userStories(token)
+            ),
+            pagingSourceFactory = { userStoryDatabase.userStoryDao().getAllUserStories() }
+        ).liveData
+    }
+
+    fun uploadStory(
+        photo: MultipartBody.Part,
+        description: RequestBody,
+        token: String,
+        lat: Float? = null,
+        lon: Float? = null): Call<UserResponse> = userStories(token).postUserStory(photo, description, lat, lon)
 
     companion object {
         @Volatile
@@ -97,10 +124,11 @@ class UserRepository(
         fun getInstance(
             pref: SettingPreference,
             apiService: ApiService,
+            userStoryDatabase: UserStoryDatabase,
             appExecutors: AppExecutors
         ) : UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(pref, apiService, appExecutors)
+                instance ?: UserRepository(pref, apiService, userStoryDatabase, appExecutors)
             }.also { instance = it }
     }
 

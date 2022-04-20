@@ -13,6 +13,5 @@ data class UserResponse(
 	val loginResult: UserModel? = null,
 
     @field:SerializedName("listStory")
-	val listStory: ArrayList<StoryModel>? = null,
-
-    )
+	val listStory: ArrayList<StoryModel>? = null
+)

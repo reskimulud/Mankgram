@@ -6,18 +6,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.ItemRowStoryBinding
 import com.mankart.mankgram.model.StoryModel
+import com.mankart.mankgram.ui.mainmenu.home.HomeFragmentDirections
 import com.mankart.mankgram.utils.DiffUtilCallback
 
-class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>() {
-    private var listStory = ArrayList<StoryModel>()
-
+class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListViewHolder>(DiffUtilCallback()) {
     inner class ListViewHolder(binding: ItemRowStoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        var root = binding.root
         var image = binding.storyImage
         var name = binding.storyName
         var description = binding.storyDescription
@@ -33,19 +35,19 @@ class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>()
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val repo = listStory[position]
+        val story = getItem(position)
 
         holder.apply {
-            name.text = repo.name
-            Log.e("Adapter", "${repo.image}")
+            name.text = story?.name
+            Log.e("Adapter", "${story?.image}")
             Glide.with(itemView.context)
-                .load(repo.image)
+                .load(story?.image)
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.placeholder_image)
                 .into(image)
-            description.text = repo.description
+            description.text = story?.description
 
-            holder.detail.setOnClickListener {
+            detail.setOnClickListener {
                 TransitionManager.beginDelayedTransition(itemView as ViewGroup)
                 when (isExpanded) {
                     true -> {
@@ -62,16 +64,12 @@ class ListStoryAdapter : RecyclerView.Adapter<ListStoryAdapter.ListViewHolder>()
                     }
                 }
             }
+
+            image.setOnClickListener {
+                val toDetailImageFragment = HomeFragmentDirections.actionNavigationHomeToDetailImageFragment(story?.image)
+                val extras = FragmentNavigatorExtras(image to "detail_image")
+                root.findNavController().navigate(toDetailImageFragment, extras)
+            }
         }
-    }
-
-    override fun getItemCount(): Int = listStory.size
-
-    fun setData(newData: ArrayList<StoryModel>) {
-        val diffUtilCallback = DiffUtilCallback(listStory, newData)
-        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
-
-        listStory = newData
-        diffResult.dispatchUpdatesTo(this)
     }
 }

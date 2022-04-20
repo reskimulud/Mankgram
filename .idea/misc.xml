@@ -7,10 +7,13 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.1045" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_collapsed_app_bar.xml" value="0.1045" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_content_scroll.xml" value="0.1045" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_map_option.xml" value="0.126" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/bg_map_options.xml" value="0.1275" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1025" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1025" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/drawable/image_placeholder.xml" value="0.1025" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/font/googlesans.xml" value="0.23076923076923078" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout-land/fragment_login.xml" value="0.225" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout-land/fragment_register.xml" value="0.225" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout-night/activity_splash_screen.xml" value="0.20416666666666666" />
@@ -19,15 +22,23 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_main2.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_map_view_story.xml" value="0.25" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_on_boarding.xml" value="0.22" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_detail_image.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_dialog_detail_story.xml" value="0.22" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_home.xml" value="0.13846697280113035" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_login.xml" value="0.140625" />
-        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_new_story.xml" value="0.25" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_map_option.xml" value="0.22" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_maps.xml" value="0.33" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_new_story.xml" value="0.18" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/item_loading.xml" value="0.10625" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/layout/item_row_story.xml" value="0.33" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/menu/map_style_option.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/menu/map_view_option.xml" value="0.140625" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/Submission/Mankgram/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1025" />
       </map>
     </option>

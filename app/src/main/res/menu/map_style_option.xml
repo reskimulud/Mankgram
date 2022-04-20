@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/map_style"
+        android:icon="@drawable/ic_map_style_option"
+        android:id="@+id/map_style_option"
+        app:showAsAction="ifRoom"
+        app:iconTint="@color/colorBase"/>
+</menu>

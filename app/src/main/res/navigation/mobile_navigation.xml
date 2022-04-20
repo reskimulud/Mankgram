@@ -10,7 +10,11 @@
         android:id="@+id/navigation_home"
         android:name="com.mankart.mankgram.ui.mainmenu.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_new_story"
@@ -27,5 +31,16 @@
         android:name="com.mankart.mankgram.ui.mainmenu.setting.SettingFragment"
         android:label="@string/title_setting"
         tools:layout="@layout/fragment_setting" />
+
+    <dialog
+        android:id="@+id/detailImageFragment"
+        android:name="com.mankart.mankgram.ui.mainmenu.home.DetailImageFragment"
+        android:label="fragment_detail_image"
+        tools:layout="@layout/fragment_detail_image" >
+        <argument
+            android:name="image"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
 
 </navigation>
