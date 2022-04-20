@@ -116,7 +116,7 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             dismiss()
         }
     }
-    
+
     private fun changeColor(name: String): Int {
         return when (name) {
             ACCENT_COLOR -> ContextCompat.getColor(requireContext(), R.color.colorAccent)
@@ -211,10 +211,10 @@ class MapOptionFragment : BottomSheetDialogFragment() {
             }
         }
     }
-    
+
     companion object {
         private const val ACCENT_COLOR = "ACCENT_COLOR"
         private const val SECONDARY_COLOR = "SECONDARY_COLOR"
     }
-    
+
 }
