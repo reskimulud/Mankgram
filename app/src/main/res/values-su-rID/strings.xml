@@ -55,4 +55,6 @@
     <string name="map_style_silver">Abu-abu</string>
     <string name="map_style_night">Wengi</string>
     <string name="cb_share_location">Share my location?</string>
+    <string name="retry">Retry</string>
+    <string name="failed_load_data">Failed to load data</string>
 </resources>

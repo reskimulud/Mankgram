@@ -44,7 +44,7 @@ class MapViewStoryViewModel(private val userRepository: UserRepository): ViewMod
     fun getUserToken() : LiveData<String> = userRepository.getUserToken()
 
     fun getUserStoriesWithLocation(token: String) {
-        val client = userRepository.getUserStories(token, 1)
+        val client = userRepository.getUserStoryMapView(token)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
