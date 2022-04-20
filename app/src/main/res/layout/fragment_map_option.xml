@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBase"
     android:orientation="vertical"
     android:padding="24dp"
     tools:context=".ui.mapviewstory.fragment.MapOptionFragment">
@@ -14,11 +13,10 @@
         android:layout_width="30dp"
         android:layout_height="5dp"
         android:alpha="0.5"
-        android:background="@color/colorText"
+        android:background="@drawable/bg_bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/bg_bottom_nav" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_map_type"

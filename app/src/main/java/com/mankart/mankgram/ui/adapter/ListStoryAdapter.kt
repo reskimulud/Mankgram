@@ -6,16 +6,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.ItemRowStoryBinding
 import com.mankart.mankgram.model.StoryModel
+import com.mankart.mankgram.ui.mainmenu.home.HomeFragmentDirections
 import com.mankart.mankgram.utils.DiffUtilCallback
 
 class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListViewHolder>(DiffUtilCallback()) {
     inner class ListViewHolder(binding: ItemRowStoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        var root = binding.root
         var image = binding.storyImage
         var name = binding.storyName
         var description = binding.storyDescription
@@ -43,7 +47,7 @@ class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListView
                 .into(image)
             description.text = story?.description
 
-            holder.detail.setOnClickListener {
+            detail.setOnClickListener {
                 TransitionManager.beginDelayedTransition(itemView as ViewGroup)
                 when (isExpanded) {
                     true -> {
@@ -59,6 +63,12 @@ class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListView
                         isExpanded = true
                     }
                 }
+            }
+
+            image.setOnClickListener {
+                val toDetailImageFragment = HomeFragmentDirections.actionNavigationHomeToDetailImageFragment(story?.image)
+                val extras = FragmentNavigatorExtras(image to "detail_image")
+                root.findNavController().navigate(toDetailImageFragment, extras)
             }
         }
     }
