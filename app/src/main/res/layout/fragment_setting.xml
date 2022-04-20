@@ -104,7 +104,6 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/email"
                 android:textColor="@color/colorTextSecondary"
-                app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -141,7 +140,6 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/name"
                 android:textColor="@color/colorTextSecondary"
-                app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
