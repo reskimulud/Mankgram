@@ -7,11 +7,13 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mankart.mankgram.R
 import com.mankart.mankgram.ui.adapter.ListStoryAdapter
 import com.mankart.mankgram.ui.ViewModelFactory
 import com.mankart.mankgram.databinding.FragmentHomeBinding
+import com.mankart.mankgram.ui.adapter.LoadingStateListStoryAdapter
 import com.mankart.mankgram.ui.mapviewstory.MapViewStoryActivity
 
 class HomeFragment : Fragment() {
@@ -50,7 +52,7 @@ class HomeFragment : Fragment() {
         factory = ViewModelFactory.getInstance(requireActivity())
 
         binding.refreshLayout.setOnRefreshListener {
-            fetchUserStories()
+            listStoryAdapter.refresh()
         }
         fetchUserStories()
 
@@ -82,11 +84,18 @@ class HomeFragment : Fragment() {
             binding.refreshLayout.isRefreshing = false
             listStoryAdapter.submitData(lifecycle, it)
         }
-        binding.rvStory.adapter = listStoryAdapter
+        binding.rvStory.adapter = listStoryAdapter.withLoadStateFooter(
+            footer = LoadingStateListStoryAdapter { listStoryAdapter.retry() }
+        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        listStoryAdapter.submitData(lifecycle, PagingData.empty())
     }
 }

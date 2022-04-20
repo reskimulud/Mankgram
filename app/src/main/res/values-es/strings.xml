@@ -55,4 +55,6 @@
     <string name="map_style_silver">Plata</string>
     <string name="map_style_night">Noche</string>
     <string name="cb_share_location">Share my location?</string>
+    <string name="retry">Retry</string>
+    <string name="failed_load_data">Failed to load data</string>
 </resources>

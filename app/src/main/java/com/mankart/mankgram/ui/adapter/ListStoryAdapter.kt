@@ -15,8 +15,6 @@ import com.mankart.mankgram.model.StoryModel
 import com.mankart.mankgram.utils.DiffUtilCallback
 
 class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListViewHolder>(DiffUtilCallback()) {
-    private var listStory = ArrayList<StoryModel>()
-
     inner class ListViewHolder(binding: ItemRowStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         var image = binding.storyImage
         var name = binding.storyName
@@ -33,17 +31,17 @@ class ListStoryAdapter : PagingDataAdapter<StoryModel, ListStoryAdapter.ListView
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val story = listStory[position]
+        val story = getItem(position)
 
         holder.apply {
-            name.text = story.name
-            Log.e("Adapter", "${story.image}")
+            name.text = story?.name
+            Log.e("Adapter", "${story?.image}")
             Glide.with(itemView.context)
-                .load(story.image)
+                .load(story?.image)
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.placeholder_image)
                 .into(image)
-            description.text = story.description
+            description.text = story?.description
 
             holder.detail.setOnClickListener {
                 TransitionManager.beginDelayedTransition(itemView as ViewGroup)
