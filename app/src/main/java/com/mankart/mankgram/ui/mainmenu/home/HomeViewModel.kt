@@ -1,6 +1,5 @@
 package com.mankart.mankgram.ui.mainmenu.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +24,5 @@ class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun getUserStories(token: String) {
         userStories = userRepository.getUserStoryList(token).cachedIn(viewModelScope)
-        Log.e("HomeViewModel", "getUserStories: " + userStories.value)
     }
 }

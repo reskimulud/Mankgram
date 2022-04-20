@@ -1,6 +1,5 @@
 package com.mankart.mankgram.data.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mankart.mankgram.data.network.ApiService
@@ -17,7 +16,6 @@ class StoryPagingSource(private val apiService: ApiService, private val location
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, StoryModel> {
         return try {
-            Log.e("StoryPagingSource", "fun load on ${Thread.currentThread().name} in StoryPagingSource")
             val page = params.key ?: INITIAL_PAGE_INDEX
             val response = apiService.getUserStories(location, page, params.loadSize).awaitResponse().body()
             val responseData = response?.listStory as List<StoryModel>
