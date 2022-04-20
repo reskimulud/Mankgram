@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.mankart.mankgram.*
@@ -92,6 +92,10 @@ class NewStoryFragment : Fragment() {
         binding.btnGallery.setOnClickListener { startGallery() }
 
         initObserve()
+
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_new_story_to_navigation_home)
+        }
 
         binding.uploadStory.setOnClickListener {
             val description = binding.descriptionEditText.text.toString()

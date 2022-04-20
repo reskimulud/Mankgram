@@ -17,6 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            android:padding="8dp"
+            app:tint="@color/colorBase"/>
+
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
