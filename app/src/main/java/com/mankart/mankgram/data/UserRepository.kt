@@ -3,14 +3,12 @@ package com.mankart.mankgram.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
+import androidx.paging.*
+import com.mankart.mankgram.data.database.UserStoryDatabase
 import com.mankart.mankgram.data.datastore.SettingPreference
 import com.mankart.mankgram.data.network.ApiService
 import com.mankart.mankgram.data.network.UserResponse
-import com.mankart.mankgram.data.paging.StoryPagingSource
+import com.mankart.mankgram.data.paging.StoryRemoteMediator
 import com.mankart.mankgram.model.StoryModel
 import com.mankart.mankgram.ui.mapviewstory.MapStyle
 import com.mankart.mankgram.ui.mapviewstory.MapType
@@ -26,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class UserRepository(
     private val pref: SettingPreference,
     private val apiService: ApiService,
+    private val userStoryDatabase: UserStoryDatabase,
     val appExecutors: AppExecutors
 ) {
     /**
@@ -94,14 +93,19 @@ class UserRepository(
         return userStories(token).getUserStories(1)
     }
 
-    fun getUserStoryList(token: String, location: Int = 0) : LiveData<PagingData<StoryModel>> {
+    @OptIn(ExperimentalPagingApi::class)
+    fun getUserStoryList(token: String) : LiveData<PagingData<StoryModel>> {
         Log.e("getUserStoryList", "run getUserStoryList")
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { StoryPagingSource(userStories(token), location) }
+            remoteMediator = StoryRemoteMediator(
+                userStoryDatabase,
+                apiService = userStories(token)
+            ),
+            pagingSourceFactory = { userStoryDatabase.userStoryDao().getAllUserStories() }
         ).liveData
     }
 
@@ -120,10 +124,11 @@ class UserRepository(
         fun getInstance(
             pref: SettingPreference,
             apiService: ApiService,
+            userStoryDatabase: UserStoryDatabase,
             appExecutors: AppExecutors
         ) : UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(pref, apiService, appExecutors)
+                instance ?: UserRepository(pref, apiService, userStoryDatabase, appExecutors)
             }.also { instance = it }
     }
 
