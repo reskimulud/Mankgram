@@ -92,10 +92,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
         listStoryAdapter.submitData(lifecycle, PagingData.empty())
     }
 }

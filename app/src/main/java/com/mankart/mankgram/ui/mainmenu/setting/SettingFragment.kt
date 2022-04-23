@@ -60,6 +60,7 @@ class SettingFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             authenticationViewModel.logout()
+            settingViewModel.saveIsFirstTime(false)
             startActivity(Intent(activity, AuthenticationActivity::class.java))
             activity?.finish()
         }
