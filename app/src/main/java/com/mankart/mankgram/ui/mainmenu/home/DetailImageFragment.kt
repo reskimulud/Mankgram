@@ -43,5 +43,7 @@ class DetailImageFragment : DialogFragment() {
 
         sharedElementEnterTransition = animation
         sharedElementReturnTransition = animation
+
+        binding.root.setOnClickListener { dismiss() }
     }
 }
