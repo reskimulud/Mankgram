@@ -1,8 +1,10 @@
 package com.mankart.mankgram.ui.mainmenu
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,6 +16,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.mankart.mankgram.R
 import com.mankart.mankgram.utils.clearDirectory
 import com.mankart.mankgram.databinding.ActivityMainBinding
@@ -23,6 +26,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var hideNavView = false
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -62,9 +66,36 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        hideShowBottomNavigation()
+
         supportActionBar?.hide()
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+    }
+
+    private fun hideShowBottomNavigation() {
+        val rvStory: RecyclerView = findViewById(R.id.rv_story)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            rvStory.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                val height = (binding.navView.height + 32).toFloat()
+
+                if (!hideNavView && scrollY > oldScrollY) {
+                    hideNavView = true
+                    ObjectAnimator.ofFloat(binding.navView, "translationY", 0f, height).apply {
+                        duration = 200
+                        start()
+                    }
+                }
+
+                if (hideNavView && scrollY < oldScrollY) {
+                    hideNavView = false
+                    ObjectAnimator.ofFloat(binding.navView, "translationY", height, 0f).apply {
+                        duration = 200
+                        start()
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
