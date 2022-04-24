@@ -66,15 +66,17 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        hideShowBottomNavigation()
+        val rvStory = findViewById<RecyclerView>(R.id.rv_story)
+        if (rvStory != null) {
+            hideShowBottomNavigation(rvStory)
+        }
 
         supportActionBar?.hide()
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
     }
 
-    private fun hideShowBottomNavigation() {
-        val rvStory: RecyclerView = findViewById(R.id.rv_story)
+    private fun hideShowBottomNavigation(rvStory: RecyclerView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             rvStory.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
                 val height = (binding.navView.height + 32).toFloat()
