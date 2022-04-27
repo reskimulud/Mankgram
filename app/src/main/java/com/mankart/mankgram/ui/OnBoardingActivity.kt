@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
-import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.ActivityOnBoardingBinding
 import com.mankart.mankgram.ui.authentication.AuthenticationActivity
 import com.mankart.mankgram.ui.mainmenu.setting.SettingViewModel

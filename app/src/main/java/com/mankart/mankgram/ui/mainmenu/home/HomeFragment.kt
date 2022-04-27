@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
+        binding.refreshLayout.isRefreshing = true
         binding.refreshLayout.setOnRefreshListener {
             listStoryAdapter.refresh()
         }
