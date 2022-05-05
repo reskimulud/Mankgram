@@ -13,9 +13,11 @@
 
 **Mankgram** has a *simple interface and is easy to use*, you can send pictures either from the camera directly or take pictures from the gallery. There is also a feature to change the display mode to dark to make the user comfortable and of course it will save battery because it doesn't display a lot of light colors.
 
+**Mankgram** are available in the form of a *list* and *map view* in displaying stories. To embed a location, we can tick **share location** when uploading a new story. In map view mode, we can change the map **type** and **style** as we like.
+
 This application is an application that was made as an assignment for submission in the [Belajar Fundamental Aplikasi Android Intermediate](https://dicoding.com/academies/352) class at [Dicoding](https://dicoding.com) learning platform, and it is also related to the [Bangkit Academy 2022](https://g.co/bangkit) activity that I participated in.
 
-## Screenshoot:
+## Screenshot:
 
 <table border="1" align="center">
   <tr>
@@ -34,6 +36,12 @@ This application is an application that was made as an assignment for submission
     <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-04-12-16-36-21-58.png" width="240px" /></td>
     <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-04-12-16-36-51-35.png" width="240px" /></td>
     <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-04-12-16-37-52-69.png" width="240px" /></td>
+  </tr>
+
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-05-05-11-23-50-46.png" width="240px" /></td>
+    <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-05-05-11-23-57-08.png" width="240px" /></td>
+    <td><img src="https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-05-05-11-24-11-05.png" width="240px" /></td>
   </tr>
 
 </table>
