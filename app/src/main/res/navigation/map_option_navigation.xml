@@ -37,5 +37,18 @@
             android:name="image"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_dialogDetailStoryFragment_to_detailImageFragment2"
+            app:destination="@id/detailImageFragment2" />
+    </dialog>
+    <dialog
+        android:id="@+id/detailImageFragment2"
+        android:name="com.mankart.mankgram.ui.mainmenu.home.DetailImageFragment"
+        android:label="fragment_detail_image"
+        tools:layout="@layout/fragment_detail_image" >
+        <argument
+            android:name="image"
+            app:argType="string"
+            app:nullable="true" />
     </dialog>
 </navigation>

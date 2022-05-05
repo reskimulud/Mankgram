@@ -5,6 +5,7 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mankart.mankgram.R
@@ -29,20 +30,29 @@ class DialogDetailStoryFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = DialogDetailStoryFragmentArgs.fromBundle(arguments as Bundle)
-        binding.include.storyName.text = bundle.name
-        binding.include.storyDescription.text = bundle.description
 
-        Glide.with(requireActivity())
-            .load(bundle.image)
-            .placeholder(R.drawable.placeholder_image)
-            .error(R.drawable.placeholder_image)
-            .into(binding.include.storyImage)
+        binding.include.apply {
+            storyName.text = bundle.name
+            storyDescription.text = bundle.description
 
-        var isExpanded = false
+            Glide.with(requireActivity())
+                .load(bundle.image)
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.placeholder_image)
+                .into(storyImage)
 
-        binding.include.tvDetail.setOnClickListener {
-            TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
-            binding.include.apply {
+            storyImage.setOnClickListener {
+                val toDetailImageFragment =
+                    DialogDetailStoryFragmentDirections.actionDialogDetailStoryFragmentToDetailImageFragment2(
+                        bundle.image
+                    )
+                findNavController().navigate(toDetailImageFragment)
+            }
+
+            var isExpanded = false
+
+            tvDetail.setOnClickListener {
+                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
                 when (isExpanded) {
                     true -> {
                         storyDescription.visibility = View.GONE

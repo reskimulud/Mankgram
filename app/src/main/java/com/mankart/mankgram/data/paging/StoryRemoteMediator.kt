@@ -45,7 +45,7 @@ class StoryRemoteMediator(
             val responseData = response?.listStory as List<StoryModel>
             val endOfPaginationReached = responseData.isEmpty()
 
-            Log.e("StoryRemoteMediator", "inserting: $response")
+            Log.i("StoryRemoteMediator", "inserting: $response")
 
             userStoryDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {

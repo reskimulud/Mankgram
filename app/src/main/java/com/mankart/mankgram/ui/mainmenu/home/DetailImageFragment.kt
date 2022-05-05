@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
-import com.mankart.mankgram.R
 import com.mankart.mankgram.databinding.FragmentDetailImageBinding
 
 class DetailImageFragment : DialogFragment() {
@@ -43,5 +42,7 @@ class DetailImageFragment : DialogFragment() {
 
         sharedElementEnterTransition = animation
         sharedElementReturnTransition = animation
+
+        binding.root.setOnClickListener { dismiss() }
     }
 }
