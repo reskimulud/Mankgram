@@ -46,6 +46,9 @@ This application is an application that was made as an assignment for submission
 
 </table>
 
+## MAD Scorecard Summary:
+![MAD Scorecard](https://raw.githubusercontent.com/reskimulud/reskimulud/main/assets_for_project/mankgram/Screenshot_2022-04-12-16-37-52-69.png)
+
 ## License
 
 ```
