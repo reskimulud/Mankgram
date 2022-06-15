@@ -1,4 +1,5 @@
 # Mankgram
+![Android CI](https://github.com/reskimulud/Mankgram/actions/workflows/main.yml/badge.svg)
 ![Release](https://img.shields.io/github/v/release/reskimulud/Mankgram) &nbsp;
 ![File Size](https://img.shields.io/github/repo-size/reskimulud/Mankgram?logo=github)&nbsp;
 ![Downloads](https://img.shields.io/github/downloads/reskimulud/Mankgram/total)&nbsp;
