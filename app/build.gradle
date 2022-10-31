@@ -19,7 +19,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders += [MAPS_API_KEY:"your_api_key"]
+        def propsFile = rootProject.file('local.properties')
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+
+        manifestPlaceholders += [MAPS_API_KEY:"${props['mapsApiKey']}"]
+        buildConfigField("String", "CIPHER_KEY", "\"${props['cipherKey']}\"")
+        buildConfigField("String", "IV", "\"${props['iv']}\"")
     }
 
     buildTypes {
@@ -77,4 +83,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'io.github.reskimulud:encrypted-datastore:0.0.2'
 }

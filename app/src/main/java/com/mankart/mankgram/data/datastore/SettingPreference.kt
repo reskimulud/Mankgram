@@ -6,19 +6,20 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.mankart.mankgram.BuildConfig.CIPHER_KEY
+import com.mankart.mankgram.BuildConfig.IV
 import com.mankart.mankgram.ui.mapviewstory.MapStyle
 import com.mankart.mankgram.ui.mapviewstory.MapType
+import io.github.reskimulud.encrypteddatastore.EncryptedDataStore.secureEdit
+import io.github.reskimulud.encrypteddatastore.EncryptedDataStore.secureMap
+import io.github.reskimulud.encrypteddatastore.algorithm.aes.AES
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class SettingPreference private constructor(private val dataStore: DataStore<Preferences>) {
-    private val THEME_MODE_KEY = booleanPreferencesKey("theme_mode")
-    private val USER_TOKEN_KEY = stringPreferencesKey("user_token")
-    private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
-    private val USER_NAME_KEY = stringPreferencesKey("user_name")
-    private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
-    private val MAP_TYPE_KEY = stringPreferencesKey("map_type")
-    private val MAP_STYLE_KEY = stringPreferencesKey("map_style")
+class SettingPreference private constructor(
+    private val dataStore: DataStore<Preferences>,
+    private val aes: AES,
+) {
 
     /**
      * Dark Mode
@@ -43,13 +44,13 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
      * User Token
      */
 
-    fun getUserToken(): Flow<String> = dataStore.data.map {
+    fun getUserToken(): Flow<String> = dataStore.data.secureMap(aes) {
         it[USER_TOKEN_KEY] ?: DEFAULT_VALUE
     }
 
     suspend fun saveUserToken(token: String) {
-        dataStore.edit {
-            it[USER_TOKEN_KEY] = token
+        dataStore.secureEdit(token, aes) { preferences, encryptedToken ->
+            preferences[USER_TOKEN_KEY] = encryptedToken
             Log.e("SettingPreference", "Token saved! saveUserToken: $token")
         }
     }
@@ -58,13 +59,13 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
      * User Email
      */
 
-    fun getUserEmail(): Flow<String> = dataStore.data.map {
+    fun getUserEmail(): Flow<String> = dataStore.data.secureMap(aes) {
         it[USER_EMAIL_KEY] ?: DEFAULT_VALUE
     }
 
     suspend fun saveUserEmail(email: String) {
-        dataStore.edit {
-            it[USER_EMAIL_KEY] = email
+        dataStore.secureEdit(email, aes) { preferences, encryptedEmail ->
+            preferences[USER_EMAIL_KEY] = encryptedEmail
         }
     }
 
@@ -72,13 +73,13 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
      * User Name
      */
 
-    fun getUserName(): Flow<String> = dataStore.data.map {
+    fun getUserName(): Flow<String> = dataStore.data.secureMap(aes) {
         it[USER_NAME_KEY] ?: DEFAULT_VALUE
     }
 
     suspend fun saveUserName(name: String) {
-        dataStore.edit {
-            it[USER_NAME_KEY] = name
+        dataStore.secureEdit(name, aes) { preferences, encryptedName ->
+            preferences[USER_NAME_KEY] = encryptedName
         }
     }
 
@@ -149,13 +150,25 @@ class SettingPreference private constructor(private val dataStore: DataStore<Pre
     }
 
     companion object {
+        private val THEME_MODE_KEY = booleanPreferencesKey("theme_mode")
+        private val USER_TOKEN_KEY = stringPreferencesKey("user_token")
+        private val USER_EMAIL_KEY = stringPreferencesKey("user_email")
+        private val USER_NAME_KEY = stringPreferencesKey("user_name")
+        private val FIRST_TIME_KEY = booleanPreferencesKey("first_time")
+        private val MAP_TYPE_KEY = stringPreferencesKey("map_type")
+        private val MAP_STYLE_KEY = stringPreferencesKey("map_style")
+
         @Volatile
         private var INSTANCE: SettingPreference? = null
         const val DEFAULT_VALUE = "not_set_yet"
 
         fun getInstance(dataStore: DataStore<Preferences>) : SettingPreference {
             return INSTANCE ?: synchronized(this) {
-                val instance = SettingPreference(dataStore)
+                val aes: AES = AES.Builder()
+                    .setKey(CIPHER_KEY)
+                    .setIv(IV)
+                    .build()
+                val instance = SettingPreference(dataStore, aes)
                 INSTANCE = instance
                 instance
             }
